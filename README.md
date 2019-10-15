@@ -1,0 +1,1 @@
+This is our initial setup for out project: Not Your Average Cup of Joe
