@@ -48,12 +48,11 @@ body {
     font-family: Montserrat;
     font-weight: lighter;
     position: absolute;
-    margin: 15px;
+    margin: 30px;
     margin-top: 50px;;
     max-width: 500px;
     padding: 16px;
   }
-
   
   /* Set a style for the submit button */
   .btn {
