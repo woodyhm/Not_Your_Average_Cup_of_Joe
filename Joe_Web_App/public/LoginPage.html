@@ -10,26 +10,25 @@
   <title>Not Your Average Cup of Joe</title>
 </head>
 
-<body>
-  <nav class="navbar fixed-top">
-    Joe
+<body background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
 
-    <div class="btn-group">
-      <span data-toggle="dropdown">
-        <i class="material-icons">menu</i>
-      </span>
-      <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" type="button">Profile</button>
-        <button class="dropdown-item" type="button">My Coffee Makers</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Settings</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Help</button>
-      </div>
-    </div>
-  </nav>
-  <div id="main-page" class="container page-container">
+  <div class="bg-img">
+    <form action="/action_page.php" class="container">
+      <h1 style="color:rgb(0, 0, 0);">Not Your Average Cup of Joe</h1>
+  
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <label id="forgotPassword" for="psw">Forgot your password?</label>
+
+      <button id="login" type="submit" class="btn">Login</button>
+      <label id="forgotPassword" for="psw">Don't have an account?</label>
 
 
+    </form>
   </div>
+
+
+
   <script src="scripts/jquery.min.js"></script>
   <script src="scripts/popper.min.js"></script>
   <script src="scripts/bootstrap.min.js"></script>
