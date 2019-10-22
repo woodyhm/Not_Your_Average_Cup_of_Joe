@@ -1,79 +1,135 @@
 body {
-    /* background: url(coffee_shop.jpg); */
-    box-shadow: inset 0px 0px 8px #000000;
-    background-repeat: no-repeat;
-    background-size: fill;
-    height: 100%;
-    width: 100%;
+  /* background: url(coffee_shop.jpg); */
+  box-shadow: inset 0px 0px 8px #000000;
+  background-repeat: no-repeat;
+  background-size: fill;
+  height: 100%;
+  width: 100%;
 }
 
 /*LOGIN PAGE*/
 
 /* Add styles to the login form container */
 .container {
-    font-family: Montserrat;
-    font-weight: lighter;
-    position: absolute;
-    right: 0;
-    margin: 25px;
-    max-width: 300px;
-    padding: 16px;
-    /* background-color: white; */
-  }
-  
-  /* Full-width input fields */
-    input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 5px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
+  font-family: Montserrat;
+  font-weight: lighter;
+  position: absolute;
+  right: 0;
+  margin: 25px;
+  max-width: 300px;
+  padding: 16px;
+  /* background-color: white; */
+}
 
-  #forgotPassword {
-      color: #000000;
-  }
+/* Full-width input fields */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  border: none;
+  background: #f1f1f1;
+}
 
-  #login {
-      margin-top: 20;
-  }
+input[type=text]:focus,
+input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
 
-  /*CREATE ACCOUNT PAGE*/
-  .create-account-container {
-    font-family: Montserrat;
-    font-weight: lighter;
-    position: absolute;
-    margin: 30px;
-    margin-top: 50px;;
-    max-width: 500px;
-    padding: 16px;
-  }
-  
-  /* Set a style for the submit button */
-  .btn {
-    background-color: #FF473A;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-  }
-  
-  .btn:hover {
-    opacity: 1;
-  }
+#forgotPassword {
+  color: #000000;
+}
+
+#login {
+  margin-top: 20;
+}
+
+/*CREATE ACCOUNT PAGE*/
+.create-account-container {
+  font-family: Montserrat;
+  font-weight: lighter;
+  position: absolute;
+  margin: 30px;
+  margin-top: 50px;
+  ;
+  max-width: 500px;
+  padding: 16px;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #FF473A;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
 
 .navbar {
-    background-color: #FF473A;
-    color: white;
+  background-color: #FF473A;
+  color: white;
 }
 
 .page-container {
-    margin-top: 50px;
+  margin-top: 50px;
+}
+
+.material-icons.md-58 { 
+  font-size: 58px; 
+  color: #FF473A;
+}
+
+#fab {
+  position: fixed;
+  bottom: 4px;
+  right: 8px;
+  z-index: 999;
+}
+
+#fab:active {
+  transform: translateY(4px);
+  opacity: 0.8;
+}
+
+.btn-outline-light {
+  color: white;
+}
+
+.modal-header {
+  border: none;
+  padding-bottom: 0;
+}
+
+.modal-footer {
+  border: none;
+  padding-top: 0;
+}
+
+.quote-card-quote,
+.quote-card-movie {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.quote-card-quote {
+  font-size: 1.5em;
+}
+
+.quote-card-movie {
+  font-size: 1.2em;
+}
+
+.quote-card {
+  margin: 0px;
+}
+
+[data-toggle="dropdown"] {
+  cursor: pointer;
 }

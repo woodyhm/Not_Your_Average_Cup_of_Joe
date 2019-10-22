@@ -10,12 +10,12 @@
 var rh = rh || {};
 
 /** globals */
-rh.COLLECTION_COFFEE_MAKERS = "CoffeeMakers";
-rh.KEY_IP_ADDRESS = "IPAddress";
-rh.KEY_IN_PUBLIC = "InPublic";
-rh.KEY_LAST_USED = "lastUsed";
-rh.KEY_LOCATION = "Location";
-rh.KEY_NAME = "Name";
+// rh.COLLECTION_COFFEE_MAKERS = "CoffeeMakers";
+// rh.KEY_IP_ADDRESS = "IPAddress";
+// rh.KEY_IN_PUBLIC = "InPublic";
+// rh.KEY_LAST_USED = "lastUsed";
+// rh.KEY_LOCATION = "Location";
+// rh.KEY_NAME = "Name";
 
 rh.COLLECTION_USER_ACCOUNTS = "UserAccounts";
 rh.KEY_FIRST_NAME = "FirstName";
@@ -23,11 +23,21 @@ rh.KEY_LAST_NAME = "LastName";
 rh.KEY_PASSWORD = "Password";
 rh.KEY_USERNAME = "Username";
 
+rh.COLLECTION_MOVIEQUOTES = "CoffeeMakers";
+rh.KEY_QUOTE = "Name";
+rh.KEY_MOVIE = "IPAddress";
+rh.KEY_LAST_TOUCHED = "lastUsed";
+
 rh.fbCoffeeMakersManager = null;
 rh.fbSingleCoffeeMakerManager = null;
 //User Account Managers?
+rh.fbUserAccountsManager = null;
+rh.fbSingleUsesrAccountManager = null;
 
-rh.UserAccount = class {
+rh.fbMovieQuotesManager = null;
+rh.fbSingleMovieQuoteManager = null;
+
+rh.MovieQuote = class {
 	constructor(id, quote, movie) {
 		this.id = id;
 		this.quote = quote;
@@ -43,7 +53,7 @@ rh.FbMovieQuotesManager = class {
 	}
 
 	beginListening(changeListener) {
-		console.log("Listening for movie quotes");
+		console.log("Listening for ");
 		this._unsubscribe = this._ref.orderBy(rh.KEY_LAST_TOUCHED, "desc").limit(30).onSnapshot((querySnapshot) => {
 			this._documentSnapshots = querySnapshot.docs;
 			console.log("Update " + this._documentSnapshots.length + " movie quotes");
