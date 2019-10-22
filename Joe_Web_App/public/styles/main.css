@@ -133,3 +133,9 @@ input[type=password]:focus {
 [data-toggle="dropdown"] {
   cursor: pointer;
 }
+
+#coffeeIcon{
+  width: 32px;
+  height: 32px;
+  
+}
