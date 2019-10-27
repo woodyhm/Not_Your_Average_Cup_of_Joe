@@ -19,3 +19,32 @@ You're about to initialize a Firebase project in this directory:
 
   C:\Users\thompshr\Desktop\School Documents\CSSE\CSSE280 WebDev\Not_Your_Average_Cup_of_Joe\Joe_Web_App
 
+[debug] [2019-10-26T19:33:43.901Z] ----------------------------------------------------------------------
+[debug] [2019-10-26T19:33:43.905Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-26T19:33:43.905Z] CLI Version:   7.3.1
+[debug] [2019-10-26T19:33:43.905Z] Platform:      win32
+[debug] [2019-10-26T19:33:43.905Z] Node Version:  v12.10.0
+[debug] [2019-10-26T19:33:43.907Z] Time:          Sat Oct 26 2019 15:33:43 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-10-26T19:33:43.907Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-26T19:33:43.920Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-26T19:33:43.921Z] > authorizing via signed-in user
+[debug] [2019-10-26T19:33:43.921Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
+[debug] [2019-10-26T19:33:43.925Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-10-26T19:33:43.925Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-10-26T19:33:44.095Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-26T19:33:44.135Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
+
+[debug] [2019-10-26T19:33:44.273Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-26T19:33:44.280Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
+ 
+[debug] [2019-10-26T19:33:44.608Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\woodyhm\Documents\CSSE280\Project\Not_Your_Average_Cup_of_Joe\Joe_Web_App'...
+[info] 
+[debug] [2019-10-26T19:33:44.618Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
+ 
+[debug] [2019-10-26T19:33:45.120Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000

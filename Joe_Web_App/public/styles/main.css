@@ -14,11 +14,10 @@ body {
   font-family: Montserrat;
   font-weight: lighter;
   position: absolute;
-  right: 0;
+  /* right: 0; */
   margin: 25px;
   max-width: 300px;
   padding: 16px;
-  /* background-color: white; */
 }
 
 /* Full-width input fields */
@@ -75,6 +74,12 @@ input[type=password]:focus {
 .navbar {
   background-color: #FF473A;
   color: white;
+}
+
+/*MAIN PAGE */
+
+#list-page {
+  position: absolute;
 }
 
 .page-container {

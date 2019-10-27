@@ -7,87 +7,27 @@
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="styles/main.css">
-  <title>Coffee Makers</title>
+  <title>Not Your Average Cup of Joe</title>
 </head>
 
-<body
-  background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
+<body background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
 
-  <nav class="navbar navbar-dark fixed-top">
-    <a class="navbar-brand" href="#">Coffee Makers</a>
+  <div class="bg-img">
+    <form action="/action_page.php" class="container">
+      <h1 style="color:rgb(0, 0, 0);">Not Your Average Cup of Joe</h1>
+  
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <label id="forgotPassword" for="psw">Forgot your password?</label>
 
-    <div class="btn-group">
-      <span data-toggle="dropdown">
-        <i class="material-icons">menu</i>
-      </span>
-      <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" type="button">My Coffee Makers</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Settings</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Help</button>
-      </div>
-    </div>
-  </nav>
-  <div id="fab" data-toggle="modal" data-target="#addQuoteDialog">
-    <i class="material-icons md-58">add_circle</i>
-  </div>
-  <div id="list-page" class="container page-container">
-    <div class="row justify-content-center">
-      <div id="quoteListContainer" class="col col-md-8">
-        <ul id="quoteList" class="list-group">
-          <!-- <li id="quoteCardTemplate" class="invisible quote-card list-group-item">
-            <div class="quote-card-quote"></div>
-            <div class="quote-card-movie text-right blockquote-footer">Loading</div>
-          </li> -->
-        </ul>
-      </div>
-    </div>
+      <button id="login" type="submit" class="btn">Login</button>
+      <label id="forgotPassword" for="psw">Don't have an account?</label>
 
+
+    </form>
   </div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="addQuoteDialog" tabindex="-1" role="dialog" aria-labelledby="add quote"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add a coffee maker</h5>
-        </div>
-        <div class="modal-body">
-          <div class="form-group row">
-            <label for="inputQuote" class="col-sm-2 mt-sm-2 control-label">Coffee Maker Name:</label>
-            <div class="col-sm-10">
-              <input type="text" id="inputQuote" class="form-control" placeholder="Favorite movie quote">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputMovie" class="col-sm-2 mt-sm-2 control-label">IP Address:</label>
-            <div class="col-sm-10">
-              <input type="text" id="inputMovie" class="form-control" placeholder="Name of the movie">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputMovie" class="col-sm-2 mt-sm-2 control-label">MAC Address:</label>
-            <div class="col-sm-10">
-              <input type="text" id="inputMovie" class="form-control" placeholder="Name of the movie">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Public
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
-          <button type="button" id="submitAddQuote" class="btn btn-outline-light" data-dismiss="modal">ADD</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="scripts/jquery.min.js"></script>
   <script src="scripts/popper.min.js"></script>
@@ -95,6 +35,7 @@
   <script src="/__/firebase/6.3.5/firebase-app.js"></script>
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
+  <script src="scripts/login.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 
