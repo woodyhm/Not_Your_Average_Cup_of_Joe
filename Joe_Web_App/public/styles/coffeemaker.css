@@ -1,7 +1,10 @@
-
-  
+.navbar-brand {
+    background-color: #FF473A;
+    color: white;
+}
 
 #title{
+    margin: 10px;
     font-size:20%;
 }
 
