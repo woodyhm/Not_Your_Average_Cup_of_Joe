@@ -1,79 +1,25 @@
-[debug] [2019-10-21T22:17:42.125Z] ----------------------------------------------------------------------
-[debug] [2019-10-21T22:17:42.128Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\thompshr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2019-10-21T22:17:42.128Z] CLI Version:   7.6.1
-[debug] [2019-10-21T22:17:42.128Z] Platform:      win32
-[debug] [2019-10-21T22:17:42.128Z] Node Version:  v12.9.1
-[debug] [2019-10-21T22:17:42.129Z] Time:          Mon Oct 21 2019 18:17:42 GMT-0400 (Eastern Daylight Time)
-[debug] [2019-10-21T22:17:42.129Z] ----------------------------------------------------------------------
-[debug] [2019-10-21T22:17:42.129Z] 
-[debug] [2019-10-21T22:17:42.135Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-10-21T22:17:42.135Z] > authorizing via signed-in user
-[info] 
-     ######## #### ########  ######## ########     ###     ######  ########
-     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
-     ######    ##  ########  ######   ########  #########  ######  ######
-     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
-     ##       #### ##     ## ######## ########  ##     ##  ######  ########
-
-You're about to initialize a Firebase project in this directory:
-
-  C:\Users\thompshr\Desktop\School Documents\CSSE\CSSE280 WebDev\Not_Your_Average_Cup_of_Joe\Joe_Web_App
-
-[debug] [2019-10-26T19:33:43.901Z] ----------------------------------------------------------------------
-[debug] [2019-10-26T19:33:43.905Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-10-26T19:33:43.905Z] CLI Version:   7.3.1
-[debug] [2019-10-26T19:33:43.905Z] Platform:      win32
-[debug] [2019-10-26T19:33:43.905Z] Node Version:  v12.10.0
-[debug] [2019-10-26T19:33:43.907Z] Time:          Sat Oct 26 2019 15:33:43 GMT-0400 (Eastern Daylight Time)
-[debug] [2019-10-26T19:33:43.907Z] ----------------------------------------------------------------------
+[debug] [2019-10-30T16:09:36.825Z] ----------------------------------------------------------------------
+[debug] [2019-10-30T16:09:36.827Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-30T16:09:36.827Z] CLI Version:   7.3.1
+[debug] [2019-10-30T16:09:36.827Z] Platform:      win32
+[debug] [2019-10-30T16:09:36.827Z] Node Version:  v12.10.0
+[debug] [2019-10-30T16:09:36.828Z] Time:          Wed Oct 30 2019 12:09:36 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-10-30T16:09:36.829Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-10-26T19:33:43.920Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-10-26T19:33:43.921Z] > authorizing via signed-in user
-[debug] [2019-10-26T19:33:43.921Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
-[debug] [2019-10-26T19:33:43.925Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-10-26T19:33:43.925Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-10-26T19:33:44.095Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-26T19:33:44.135Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
+[debug] [2019-10-30T16:09:36.835Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-30T16:09:36.835Z] > authorizing via signed-in user
+[debug] [2019-10-30T16:09:36.835Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
+[debug] [2019-10-30T16:09:36.837Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
 
-[debug] [2019-10-26T19:33:44.273Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-26T19:33:44.280Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
+[debug] [2019-10-30T16:09:36.968Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-30T16:09:36.974Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
  
-[debug] [2019-10-26T19:33:44.608Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-30T16:09:37.175Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\woodyhm\Documents\CSSE280\Project\Not_Your_Average_Cup_of_Joe\Joe_Web_App'...
 [info] 
-[debug] [2019-10-26T19:33:44.618Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
+[debug] [2019-10-30T16:09:37.183Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
  
-[debug] [2019-10-26T19:33:45.120Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] +  hosting: Local server: http://localhost:5000
-[debug] [2019-10-30T13:51:18.291Z] ----------------------------------------------------------------------
-[debug] [2019-10-30T13:51:18.294Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-10-30T13:51:18.295Z] CLI Version:   7.3.1
-[debug] [2019-10-30T13:51:18.295Z] Platform:      win32
-[debug] [2019-10-30T13:51:18.295Z] Node Version:  v12.10.0
-[debug] [2019-10-30T13:51:18.308Z] Time:          Wed Oct 30 2019 09:51:18 GMT-0400 (Eastern Daylight Time)
-[debug] [2019-10-30T13:51:18.308Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2019-10-30T13:51:18.318Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-10-30T13:51:18.318Z] > authorizing via signed-in user
-[debug] [2019-10-30T13:51:18.318Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
-[debug] [2019-10-30T13:51:18.320Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-10-30T13:51:18.320Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-10-30T13:51:18.465Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-30T13:51:18.485Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
-
-[debug] [2019-10-30T13:51:18.656Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-30T13:51:18.660Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
- 
-[debug] [2019-10-30T13:51:18.807Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from 'C:\Users\woodyhm\Documents\CSSE280\Project\Not_Your_Average_Cup_of_Joe\Joe_Web_App'...
-[info] 
-[debug] [2019-10-30T13:51:18.811Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
- 
-[debug] [2019-10-30T13:51:19.078Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-30T16:09:37.413Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] +  hosting: Local server: http://localhost:5000

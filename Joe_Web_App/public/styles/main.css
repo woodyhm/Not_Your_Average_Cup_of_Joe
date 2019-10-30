@@ -38,10 +38,12 @@ input[type=password]:focus {
 
 #forgotPassword {
   color: #000000;
+  padding: 0;
 }
 
-#login {
-  margin-top: 20;
+#createAccount {
+  color: #000000;
+  padding: 0;
 }
 
 /*CREATE ACCOUNT PAGE*/
@@ -57,7 +59,7 @@ input[type=password]:focus {
 }
 
 /* Set a style for the submit button */
-.btn {
+#login, #submitNewAccount{
   background-color: #FF473A;
   color: white;
   padding: 16px 20px;
@@ -65,7 +67,10 @@ input[type=password]:focus {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  margin-top: 10px;
 }
+
+
 
 .btn:hover {
   opacity: 1;
@@ -117,21 +122,21 @@ input[type=password]:focus {
   padding-top: 0;
 }
 
-.quote-card-quote,
-.quote-card-movie {
+.coffee-maker-card-name,
+.coffee-maker-card-ipAddress {
   white-space: nowrap;
   overflow: hidden;
 }
 
-.quote-card-quote {
+.coffee-maker-card-name {
   font-size: 1.5em;
 }
 
-.quote-card-movie {
+.coffee-maker-card-ipAddress {
   font-size: 1.2em;
 }
 
-.quote-card {
+.coffee-maker-card {
   margin: 0px;
 }
 

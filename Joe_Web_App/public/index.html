@@ -15,17 +15,51 @@
 
   <div id="login-page" class="container page-container"></div>
   <div class="bg-img">
-    <form action="/action_page.php" class="container">
+    <form id="loginForm" action="/action_page.php" class="container">
       <h1 style="color:rgb(0, 0, 0);">Not Your Average Cup of Joe</h1>
 
-      <input type="text" placeholder="Enter Email" name="email" required>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-      <label id="forgotPassword" for="psw">Forgot your password?</label>
+      <input id="email-input" class="mdc-text-field email" type="text" placeholder="Enter Email" name="email" required>
+      <input id="password-input" class="mdc-text-field password" type="password" placeholder="Enter Password" name="psw" required>
+
+      <!-- <button id="forgotPassword" type="button" class="btn btn-link">
+        <span class="mdc-button__label">
+          Forgot your password?
+        </span>
+      </button> -->
 
       <button id="login" type="submit" class="btn">Login</button>
-      <label id="forgotPassword" for="psw">Don't have an account?</label>
+      <button id="createAccount" type="button" class="btn btn-link">
+        <span class="mdc-button__label">
+          Don't have an account?
+        </span>
+      </button>
 
+    </form>
 
+    <!-- Create Account -->
+    <form id="createAccountForm" class="create-account-container">
+      <!-- <div class="form-group">
+        <label for="InputFirstName">First Name:</label>
+        <input type="text" class="form-control" id="InputCreatePassword" placeholder="Enter First Name">
+      </div>
+      <div class="form-group">
+        <label for="InputLastName">Last Name:</label>
+        <input type="text" class="form-control" id="InputPassword1" placeholder="Enter Last Name">
+      </div>       -->
+      <div class="form-group">
+        <label for="InputEmail">Email address:</label>
+        <input type="email" class="form-control mdc-text-field email" id="InputCreateEmail" aria-describedby="emailHelp"
+          placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="InputPassword">Password:</label>
+        <input type="password" class="form-control mdc-text-field password" id="InputCreatePassword" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="InputConfirmPassword">Confirm Password:</label>
+        <input type="password" class="form-control" id="InputConfirmPassword" placeholder="Confirm Password">
+      </div>
+      <button id="submitNewAccount" type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
   </div>
@@ -37,8 +71,9 @@
   <script src="scripts/bootstrap.min.js"></script>
   <script src="/__/firebase/6.3.5/firebase-app.js"></script>
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
+  <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
-  <script src="scripts/login.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 

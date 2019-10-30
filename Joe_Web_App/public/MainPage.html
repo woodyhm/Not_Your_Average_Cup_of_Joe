@@ -22,8 +22,8 @@
       </span>
       <div class="dropdown-menu dropdown-menu-right">
         <button class="dropdown-item" type="button">My Coffee Makers</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Settings</button>
-        <button class="dropdown-item" type="button" data-target="#editQuoteDialog" data-toggle="modal">Help</button>
+        <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Settings</button>
+        <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Help</button>
       </div>
     </div>
   </nav>
@@ -57,21 +57,15 @@
         </div>
         <div class="modal-body">
           <div class="form-group row">
-            <label for="inputQuote" class="col-sm-2 mt-sm-2 control-label">Coffee Maker Name:</label>
+            <label for="inputCoffeeMaker" class="col-sm-2 mt-sm-2 control-label">Coffee Maker Name:</label>
             <div class="col-sm-10">
-              <input type="text" id="inputQuote" class="form-control" placeholder="Name of the coffee maker">
+              <input type="text" id="inputCoffeeMaker" class="form-control" placeholder="Name of the coffee maker">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputMovie" class="col-sm-2 mt-sm-2 control-label">IP Address:</label>
+            <label for="inputIPAddress" class="col-sm-2 mt-sm-2 control-label">IP Address:</label>
             <div class="col-sm-10">
-              <input type="text" id="inputMovie" class="form-control" placeholder="IP Address">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputMovie" class="col-sm-2 mt-sm-2 control-label">MAC Address:</label>
-            <div class="col-sm-10">
-              <input type="text" id="inputMovie" class="form-control" placeholder="MAC Address">
+              <input type="text" id="inputIPAddress" class="form-control" placeholder="IP Address">
             </div>
           </div>
           <div class="form-group">
@@ -85,7 +79,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
-          <button type="button" id="submitAddQuote" class="btn btn-outline-light" data-dismiss="modal">ADD</button>
+          <button type="button" id="submitAddCoffeeMaker" class="btn btn-outline-light" data-dismiss="modal">ADD</button>
         </div>
       </div>
     </div>
@@ -96,6 +90,7 @@
   <script src="scripts/bootstrap.min.js"></script>
   <script src="/__/firebase/6.3.5/firebase-app.js"></script>
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
+  <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
   <script src="scripts/main.js"></script>
 </body>
