@@ -1,0 +1,30 @@
+
+  
+
+#title{
+    font-size:20%;
+}
+
+/* #coffeeIcon{
+    width: 32px;
+    height: 32px;
+} */
+
+#coffeeIcon{
+        width: 16px;
+        height: 16px;
+    }
+
+@media (min-width: 576px) { 
+    #coffeeIcon{
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (min-width: 992px) { 
+    #coffeeIcon{
+        width: 32px;
+        height: 32px;
+    }
+}
