@@ -253,14 +253,14 @@ rh.FbAuthManager = class {
 	}
 	
 	signIn() {
-		const username = new mdc.textField.MDCTextField(document.querySelector('.email'));
-		const password = new mdc.textField.MDCTextField(document.querySelector('.password'));
+		// const username = new mdc.textField.MDCTextField(document.querySelector('.email'));
+		// const password = new mdc.textField.MDCTextField(document.querySelector('.password'));
 	
 		$("#login").click((event) => {
 			console.log("TODO: Log in an existing user");
 			const emailValue = $("#email-input").val();
 			const passwordValue = $("#password-input").val();
-			console.log("Create a new user", emailValue, passwordValue);
+			console.log("Sign in a new user", emailValue, passwordValue);
 			firebase.auth().signInWithEmailAndPassword(emailValue, passwordValue).catch(function(error) {
 				// CONSIDER: In a real app tell the user what is wrong.
 				console.log(`Error ${error.code}: ${error.message}`);
@@ -269,12 +269,12 @@ rh.FbAuthManager = class {
 	};
 
 	createAccount() {
-		const username = new mdc.textField.MDCTextField(document.querySelector('.email'));
-		const password = new mdc.textField.MDCTextField(document.querySelector('.password'));
+		// const username = new mdc.textField.MDCTextField(document.querySelector('.email'));
+		// const password = new mdc.textField.MDCTextField(document.querySelector('.password'));
 
 		$("#submitNewAccount").click((event) => {
-			const emailValue = $("#InputEmail").val();
-			const passwordValue = $("#InputPassword").val();
+			const emailValue = $("#InputCreateEmail").val();
+			const passwordValue = $("#InputCreatePassword").val();
 			console.log("Create a new user", emailValue, passwordValue);
 			firebase.auth().createUserWithEmailAndPassword(emailValue, passwordValue).catch(function(error) {
 				// CONSIDER: In a real app tell the user what is wrong.

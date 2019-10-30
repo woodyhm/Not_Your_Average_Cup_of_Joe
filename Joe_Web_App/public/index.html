@@ -15,7 +15,8 @@
 
   <div id="login-page" class="container page-container"></div>
   <div class="bg-img">
-    <form id="loginForm" action="/action_page.php" class="container">
+    <!-- don't want form CHANGE!!!!-->
+    <div id="loginForm" class="container">
       <h1 style="color:rgb(0, 0, 0);">Not Your Average Cup of Joe</h1>
 
       <input id="email-input" class="mdc-text-field email" type="text" placeholder="Enter Email" name="email" required>
@@ -34,10 +35,10 @@
         </span>
       </button>
 
-    </form>
+    </div>
 
     <!-- Create Account -->
-    <form id="createAccountForm" class="create-account-container">
+    <div id="createAccountForm" class="create-account-container">
       <!-- <div class="form-group">
         <label for="InputFirstName">First Name:</label>
         <input type="text" class="form-control" id="InputCreatePassword" placeholder="Enter First Name">
@@ -60,7 +61,7 @@
         <input type="password" class="form-control" id="InputConfirmPassword" placeholder="Confirm Password">
       </div>
       <button id="submitNewAccount" type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
   </div>
   </div>
 
@@ -73,7 +74,7 @@
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
   <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <!-- <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> -->
   <script src="scripts/main.js"></script>
 </body>
 

@@ -14,16 +14,17 @@
 <body
   background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
   <nav class="navbar fixed-top">
-    Joe
+    <a class="navbar-brand" href="/MainPage.html">Coffee Makers</a>
 
     <div class="btn-group">
       <span data-toggle="dropdown">
         <i class="material-icons">menu</i>
       </span>
       <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" type="button">Coffee Maker</button>
+        <button class="dropdown-item" type="button">Coffee Makers</button>
         <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Settings</button>
         <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Help</button>
+        <button id="menuSignOut" class="dropdown-item" type="button" >Sign out</button>
       </div>
     </div>
   </nav>
@@ -51,6 +52,7 @@
   <script src="scripts/bootstrap.min.js"></script>
   <script src="/__/firebase/6.3.5/firebase-app.js"></script>
   <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
+  <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
   <script src="scripts/main.js"></script>
 </body>

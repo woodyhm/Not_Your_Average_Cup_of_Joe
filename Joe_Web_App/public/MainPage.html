@@ -24,6 +24,7 @@
         <button class="dropdown-item" type="button">My Coffee Makers</button>
         <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Settings</button>
         <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Help</button>
+        <button id="menuSignOut" class="dropdown-item" type="button" data-target="#deleteQuoteDialog" data-toggle="modal">Sign out</button>
       </div>
     </div>
   </nav>
@@ -68,17 +69,17 @@
               <input type="text" id="inputIPAddress" class="form-control" placeholder="IP Address">
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="gridCheck">
               <label class="form-check-label" for="gridCheck">
                 Public
               </label>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
+          <button type="button" id="cancelAdd" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
           <button type="button" id="submitAddCoffeeMaker" class="btn btn-outline-light" data-dismiss="modal">ADD</button>
         </div>
       </div>

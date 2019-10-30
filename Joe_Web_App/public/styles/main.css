@@ -70,7 +70,10 @@ input[type=password]:focus {
   margin-top: 10px;
 }
 
-
+#cancelAdd, #submitAddCoffeeMaker {
+  background-color: #FF473A;
+  color: white;
+}
 
 .btn:hover {
   opacity: 1;
