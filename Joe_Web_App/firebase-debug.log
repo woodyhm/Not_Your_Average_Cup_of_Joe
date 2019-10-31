@@ -20,3 +20,6 @@
 [info] 
 [debug] [2019-10-30T20:54:24.065Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
  
+[debug] [2019-10-30T20:54:24.397Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
