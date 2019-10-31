@@ -120,8 +120,11 @@ rh.ListPageController = class {
 		const $newCard = $(`
 		  <li id="${coffeeMaker.id}" class="coffee-maker-card list-group-item">
 		     <div class="coffee-maker-card-name">${coffeeMaker.name}</div>
-		     <div class="coffee-maker-card-ipAddress text-right blockquote-footer">${coffeeMaker.ipAddress}</div>
-	      </li>`);
+		     
+		  </li>`);
+		  
+			//   <div class="coffee-maker-card-ipAddress text-right blockquote-footer">${coffeeMaker.ipAddress}</div>
+
 		$newCard.click((event) => {
 			console.log("You have clicked", coffeeMaker);
 			window.location.href = `/CoffeeMaker.html?id=${coffeeMaker.id}`;
