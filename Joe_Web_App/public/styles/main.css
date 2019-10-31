@@ -140,7 +140,7 @@ input[type=password]:focus {
 }
 
 .coffee-maker-card {
-  margin: 0px;
+  margin: 5px;
   /* display: flex; */
 }
 
