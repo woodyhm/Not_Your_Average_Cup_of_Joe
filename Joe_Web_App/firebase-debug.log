@@ -1,54 +1,22 @@
-[debug] [2019-10-30T20:54:23.648Z] ----------------------------------------------------------------------
-[debug] [2019-10-30T20:54:23.650Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-10-30T20:54:23.651Z] CLI Version:   7.3.1
-[debug] [2019-10-30T20:54:23.651Z] Platform:      win32
-[debug] [2019-10-30T20:54:23.651Z] Node Version:  v12.10.0
-[debug] [2019-10-30T20:54:23.651Z] Time:          Wed Oct 30 2019 16:54:23 GMT-0400 (Eastern Daylight Time)
-[debug] [2019-10-30T20:54:23.652Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2019-10-30T20:54:23.659Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-10-30T20:54:23.659Z] > authorizing via signed-in user
-[debug] [2019-10-30T20:54:23.660Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
-[debug] [2019-10-30T20:54:23.661Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
+[debug] [2019-10-31T18:41:30.698Z] ----------------------------------------------------------------------
+[debug] [2019-10-31T18:41:30.702Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\thompshr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-31T18:41:30.702Z] CLI Version:   7.6.2
+[debug] [2019-10-31T18:41:30.702Z] Platform:      win32
+[debug] [2019-10-31T18:41:30.702Z] Node Version:  v12.9.1
+[debug] [2019-10-31T18:41:30.703Z] Time:          Thu Oct 31 2019 14:41:30 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-10-31T18:41:30.703Z] ----------------------------------------------------------------------
+[debug] [2019-10-31T18:41:30.703Z] 
+[debug] [2019-10-31T18:41:30.709Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-31T18:41:30.709Z] > authorizing via signed-in user
+[debug] [2019-10-31T18:41:30.709Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
+[debug] [2019-10-31T18:41:30.711Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
 
-[debug] [2019-10-30T20:54:23.848Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-30T20:54:23.854Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
+[debug] [2019-10-31T18:41:30.858Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-31T18:41:30.860Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
  
-[debug] [2019-10-30T20:54:24.056Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from 'C:\Users\woodyhm\Documents\CSSE280\Project\Not_Your_Average_Cup_of_Joe\Joe_Web_App'...
-[info] 
-[debug] [2019-10-30T20:54:24.065Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
- 
-[debug] [2019-10-30T20:54:24.397Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] +  hosting: Local server: http://localhost:5000
-[debug] [2019-10-31T13:33:22.937Z] ----------------------------------------------------------------------
-[debug] [2019-10-31T13:33:22.940Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\thompshr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-10-31T13:33:22.940Z] CLI Version:   7.6.2
-[debug] [2019-10-31T13:33:22.940Z] Platform:      win32
-[debug] [2019-10-31T13:33:22.940Z] Node Version:  v12.9.1
-[debug] [2019-10-31T13:33:22.941Z] Time:          Thu Oct 31 2019 09:33:22 GMT-0400 (Eastern Daylight Time)
-[debug] [2019-10-31T13:33:22.941Z] ----------------------------------------------------------------------
-[debug] [2019-10-31T13:33:22.941Z] 
-[debug] [2019-10-31T13:33:22.948Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-10-31T13:33:22.948Z] > authorizing via signed-in user
-[debug] [2019-10-31T13:33:22.948Z] [iam] checking project not-your-average-cup-of-joe for permissions ["firebase.projects.get"]
-[debug] [2019-10-31T13:33:22.950Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-10-31T13:33:22.950Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-10-31T13:33:23.407Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-31T13:33:23.534Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/not-your-average-cup-of-joe:testIamPermissions  
-
-[debug] [2019-10-31T13:33:23.689Z] <<< HTTP RESPONSE 200
-[debug] [2019-10-31T13:33:23.690Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe  
- 
-[debug] [2019-10-31T13:33:24.234Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-31T18:41:31.006Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\thompshr\Desktop\School Documents\CSSE\CSSE280 WebDev\Not_Your_Average_Cup_of_Joe\Joe_Web_App'...
 [info] 
-[debug] [2019-10-31T13:33:24.253Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
+[debug] [2019-10-31T18:41:31.010Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/not-your-average-cup-of-joe/webApps/-/config  
  
-[debug] [2019-10-31T13:33:24.767Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] +  hosting: Local server: http://localhost:5000
