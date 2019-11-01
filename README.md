@@ -6,7 +6,9 @@ Link to Project Vault for Web App: https://rosehulmanprojectvault.org/project/-L
 
 Link to Web App Figma Mocks: https://www.figma.com/file/IpsSkWnzFe4naCMB6uZ7Vr/Main-Page?node-id=4%3A180
 
+
 Timeline:
+
 Week 8(current week): Currently, we have the web interface partially implemented and we have aquired all of the necessary parts to build our coffee maker.
 
 Week 9: By the end of week 9 we will have the basic on, off, and brew working. We wil also have the web interface completed.
