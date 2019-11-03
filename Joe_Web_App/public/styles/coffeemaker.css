@@ -2,6 +2,7 @@ body{
     padding-left:20px; 
     padding-right:20px;
     box-shadow: none;
+    margin-top: 50px;
     height: 100%;
     width: 100%;
 }
@@ -26,25 +27,25 @@ body{
 } */
 
 #coffeeIcon{
-        width: 16px;
-        height: 16px;
+        width: 32px;
+        height: 32px;
     }
 
 
 
 
 @media (min-width: 576px) { 
-    #coffeeIcon{
+    /* #coffeeIcon{
         width: 16px;
         height: 16px;
-    }
+    } */
 }
 
 @media (min-width: 992px) { 
-    #coffeeIcon{
+    /* #coffeeIcon{
         width: 32px;
         height: 32px;
-    }
+    } */
 }
 
 #queue{
