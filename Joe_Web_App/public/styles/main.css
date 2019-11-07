@@ -88,6 +88,7 @@ input[type=password]:focus {
 
 #list-page {
   position: absolute;
+  margin-top: 75px;
 }
 
 .page-container {

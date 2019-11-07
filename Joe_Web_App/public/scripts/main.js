@@ -87,6 +87,15 @@ rh.FbCoffeeMakersManager = class {
 rh.ListPageController = class {
 	constructor() {
 		rh.fbCoffeeMakersManager.beginListening(this.updateView.bind(this));
+		$("#settingModal").on("shown.bs.modal", function (e) {
+			$("#settingCloseButton").trigger("focus");
+		});
+		$("#helpModal").on("shown.bs.modal", function (e) {
+			$("#helpCloseButton").trigger("focus");
+		});
+		$("#emailModal").on("shown.bs.modal", function (e) {
+			$("#emailJoeButton").trigger("focus");
+		});
 		$("#menuSignOut").click((event) => {
 			console.log("Sign out.");
 			rh.fbAuthManager.signOut();
@@ -198,6 +207,10 @@ rh.DetailPageController = class {
 		});
 		$("#editCoffeeMakerDialog").on("shown.bs.modal", function (e) {
 			$("#inputCoffeeMaker").trigger("focus");
+		});
+		$("#menuSignOut").click((event) => {
+			console.log("Sign out.");
+			rh.fbAuthManager.signOut();
 		});
 
 		// TODO: implement edit coffee maker
