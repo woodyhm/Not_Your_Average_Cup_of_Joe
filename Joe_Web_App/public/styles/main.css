@@ -154,3 +154,17 @@ input[type=password]:focus {
   height: 32px;
   
 } */
+
+/* Coffee Maker Page */
+
+#startBrewingButton {
+  margin: 10px;
+  background-color: #FF473A;
+  color: white;
+}
+
+#settingsButton {
+  margin: 10px;
+  background-color: #FF473A;
+  color: white;
+}
