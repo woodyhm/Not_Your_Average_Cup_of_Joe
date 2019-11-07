@@ -144,6 +144,7 @@ rh.ListPageController = class {
 
 rh.FbSingleCoffeeMakerManager = class {
 	constructor(coffeeMakerId) {
+		// console.log(coffeeMakerId);
 		this._ref = firebase.firestore().collection(rh.COLLECTION_COFFEEMAKERS).doc(coffeeMakerId);
 		this._document = {};
 		this._unsubscribe = null;
@@ -183,11 +184,11 @@ rh.FbSingleCoffeeMakerManager = class {
 		return this._ref.delete();
 	}
 
-	get name() {
+	get name() {		
 		return this._document.get(rh.KEY_NAME);
 	}
 
-	get ipAdress() {
+	get ipAddress() {
 		return this._document.get(rh.KEY_IPADDRESS);
 	}
 
@@ -201,6 +202,7 @@ rh.FbSingleCoffeeMakerManager = class {
 rh.DetailPageController = class {
 	constructor() {
 		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
+		
 		$("#editCoffeeMakerDialog").on("show.bs.modal", function (e) {
 			$("#inputCoffeeMaker").val(rh.fbSingleCoffeeMakerManager.name);
 			$("#inputIPAddress").val(rh.fbSingleCoffeeMakerManager.ipAddress);
@@ -212,6 +214,10 @@ rh.DetailPageController = class {
 			console.log("Sign out.");
 			rh.fbAuthManager.signOut();
 		});
+
+		//Make the title the coffee maker name
+		console.log(rh.fbSingleCoffeeMakerManager.name);
+		// $("#coffeeName")
 
 		// TODO: implement edit coffee maker
 		// $("#submitEditQuote").click((event) => {
