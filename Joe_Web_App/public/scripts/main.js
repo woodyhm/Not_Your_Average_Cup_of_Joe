@@ -216,8 +216,8 @@ rh.DetailPageController = class {
 		});
 
 		//Make the title the coffee maker name
-		console.log(rh.fbSingleCoffeeMakerManager.name);
-		// $("#coffeeName")
+		
+		
 
 		// TODO: implement edit coffee maker
 		// $("#submitEditQuote").click((event) => {
@@ -238,6 +238,10 @@ rh.DetailPageController = class {
 	updateView() {
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
+
+		console.log(rh.fbSingleCoffeeMakerManager.name);
+		$("#coffeeName").html(rh.fbSingleCoffeeMakerManager.name);
+		// $("#coffeeIcon").attr("src","images/coffee_icon.svg");
 
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
