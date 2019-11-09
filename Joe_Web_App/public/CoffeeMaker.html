@@ -34,7 +34,8 @@
   <div id="detail-page" class="page-container-fluid">
     
     <span id="title" class="text-center"> 
-      <h3 id="coffeeName">Coffee Maker Name <img id="coffeeIcon" src="images/coffee_icon.svg"></h3>
+      <h3 id="coffeeName"> </h3>
+      <!-- <img id="coffeeIcon" src="images/coffee_icon.svg"> -->
     </span>
 
 
@@ -45,12 +46,9 @@
             <div class="card-body">
               <div id="status">Status: Brewing</div>
               <!-- <div id="status" style="background-color:green">Ready to Brew</div> -->
-              
-              <div class="progress" style="height: 1px;">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <div class="progress" style="height: 20px;">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+             
+              <div  class="progress" style="height: 20px;">
+                <div id="progress" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               
             </div>
@@ -75,17 +73,18 @@
         <div id="schedule" class="col card" style="width: 18rem;">
             <div class="card-body">
               Schedule:
+
               <div class="form-group">
                 <label for="timeInput">Time:</label>
-                <input type="time" class="form-control" id="timeInput" aria-describedby="time" placeholder="Enter Time">
+                <input type="time" class="form-control" id="timeInput" aria-describedby="time" placeholder="Enter Time" onChange="inputChange(event)">
               </div>
+
               <div class="form-group">
-                <label for="timeInput">Date:</label>
-                <input type="date" class="form-control" id="timeInput" aria-describedby="time" placeholder="Enter Time">
+                <label for="dateInput">Date:</label>
+                <input type="date" class="form-control" id="dateInput" aria-describedby="time" placeholder="Enter Date" onChange="inputChange(event)">
              </div>     
-             <button type="button" class="btn btn-dark">Schedule</button>
-  
-  
+             <button id="scheduleButton" type="button" class="btn btn-dark">Schedule</button>
+
           </div>
         </div>
       </div>

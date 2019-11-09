@@ -217,9 +217,25 @@ rh.DetailPageController = class {
 			rh.fbAuthManager.signOut();
 		});
 
+		$("#scheduleButton").click((event)=>{
+			console.log("schedule coffee by time and date");
+			console.log("schedule "+document.getElementById("timeInput").value);
+			console.log("schedule "+document.getElementById("dateInput").value);	
+		});
+	
+		$("#startBrewingButton").click((event)=>{
+			console.log("start brewing now");
+			document.getElementById("progress").style.width = "0%";
+
+		});
+
+		$("#settingsButton").click((event)=>{
+			console.log("configure coffee maker settings");
+		});
+
 		//Make the title the coffee maker name
-		console.log(rh.fbSingleCoffeeMakerManager.name);
-		// $("#coffeeName")
+		
+		
 
 		// TODO: implement edit coffee maker
 		// $("#submitEditQuote").click((event) => {
@@ -241,6 +257,19 @@ rh.DetailPageController = class {
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
 
+		console.log(rh.fbSingleCoffeeMakerManager.name);
+		$("#coffeeName").html(rh.fbSingleCoffeeMakerManager.name);
+		// $("#coffeeIcon").attr("src","images/coffee_icon.svg");
+
+				
+		
+
+		// var timeInput = document.getElementById("timeInput");
+		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){
+		// 	e.preventDefault();
+		// 	console.log(timeInput.value);
+		// });
+
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
 			$("#menuEdit").show();
@@ -248,6 +277,11 @@ rh.DetailPageController = class {
 		}
 
 	}
+}
+
+function inputChange(e){
+	console.log(document.getElementById("timeInput").value);
+	console.log(document.getElementById("dateInput").value);
 }
 
 rh.FbAuthManager = class {
