@@ -15,6 +15,7 @@ rh.KEY_NAME = "Name";
 rh.KEY_IPADDRESS = "IPAddress";
 rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
+rh.KEY_IS_BREWING = "isBrewing";
 
 rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -66,6 +67,7 @@ rh.FbCoffeeMakersManager = class {
 			[rh.KEY_IPADDRESS]: ipAddress,
 			[rh.KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
 			[rh.KEY_UID]: rh.fbAuthManager.uid,
+			[rh.KEY_IS_BREWING]: false,
 		}).then((docRef) => {
 			console.log("Document has been added with id", docRef.id);
 		}).catch((error) => {
