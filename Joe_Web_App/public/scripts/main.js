@@ -173,10 +173,11 @@ rh.FbSingleCoffeeMakerManager = class {
 		this._unsubscribe();
 	}
 
-	update(name, ipAdress) {
+	update(name, ipAdress, isBrewing) {
 		this._ref.update({
 			[rh.KEY_NAME]: name,
 			[rh.KEY_IPADDRESS]: ipAdress,
+			[rh.KEY_IS_BREWING]: isBrewing,
 			[rh.KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now()
 		}).then((docRef) => {
 			console.log("The update is complete");
@@ -196,6 +197,10 @@ rh.FbSingleCoffeeMakerManager = class {
 
 	get uid() {
 		return this._document.get(rh.KEY_UID);
+	}
+
+	get isBrewing() {
+		return this._document.get(rh.KEY_IS_BREWING);
 	}
 }
 
@@ -224,9 +229,17 @@ rh.DetailPageController = class {
 		});
 	
 		$("#startBrewingButton").click((event)=>{
-			console.log("start brewing now");
-			document.getElementById("progress").style.width = "0%";
-
+			console.log("brew button clicked");
+			// document.getElementById("progress").style.width = "0%";
+			var brewStatus = rh.fbSingleCoffeeMakerManager.isBrewing;
+			if (!brewStatus) {
+				$("#startBrewingButton").html("Stop Brewing");
+			}
+			else {
+				$("#startBrewingButton").html("Start Brewing Now");
+			}
+			console.log("isBrewing = ", rh.fbSingleCoffeeMakerManager.isBrewing);
+			rh.fbSingleCoffeeMakerManager.update(rh.fbSingleCoffeeMakerManager.name, rh.fbSingleCoffeeMakerManager.ipAddress, !brewStatus);
 		});
 
 		$("#settingsButton").click((event)=>{
