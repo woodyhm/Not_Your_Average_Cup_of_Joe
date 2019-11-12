@@ -7,11 +7,40 @@
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="styles/main.css">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
+
+
   <title>Not Your Average Cup of Joe</title>
 </head>
 
 <body
   background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyByp4a8rc4vIoj4KcvCjpJK_Az9Zpxc57g",
+    authDomain: "not-your-average-cup-of-joe.firebaseapp.com",
+    databaseURL: "https://not-your-average-cup-of-joe.firebaseio.com",
+    projectId: "not-your-average-cup-of-joe",
+    storageBucket: "not-your-average-cup-of-joe.appspot.com",
+    messagingSenderId: "161647927530",
+    appId: "1:161647927530:web:d2d0dc08df277b4851f793",
+    measurementId: "G-ETK949S97B"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>  
+
+
 
   <div id="login-page" class="container page-container"></div>
   <div class="bg-img">

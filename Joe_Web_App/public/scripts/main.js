@@ -15,6 +15,7 @@ rh.KEY_NAME = "Name";
 rh.KEY_IPADDRESS = "IPAddress";
 rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
+rh.KEY_IS_BREWING = "isBrewing";
 
 rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -66,6 +67,7 @@ rh.FbCoffeeMakersManager = class {
 			[rh.KEY_IPADDRESS]: ipAddress,
 			[rh.KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
 			[rh.KEY_UID]: rh.fbAuthManager.uid,
+			[rh.KEY_IS_BREWING]: false,
 		}).then((docRef) => {
 			console.log("Document has been added with id", docRef.id);
 		}).catch((error) => {
@@ -171,10 +173,11 @@ rh.FbSingleCoffeeMakerManager = class {
 		this._unsubscribe();
 	}
 
-	update(name, ipAdress) {
+	update(name, ipAdress, isBrewing) {
 		this._ref.update({
 			[rh.KEY_NAME]: name,
 			[rh.KEY_IPADDRESS]: ipAdress,
+			[rh.KEY_IS_BREWING]: isBrewing,
 			[rh.KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now()
 		}).then((docRef) => {
 			console.log("The update is complete");
@@ -194,6 +197,10 @@ rh.FbSingleCoffeeMakerManager = class {
 
 	get uid() {
 		return this._document.get(rh.KEY_UID);
+	}
+
+	get isBrewing() {
+		return this._document.get(rh.KEY_IS_BREWING);
 	}
 }
 
@@ -215,9 +222,33 @@ rh.DetailPageController = class {
 			rh.fbAuthManager.signOut();
 		});
 
+		$("#scheduleButton").click((event)=>{
+			console.log("schedule coffee by time and date");
+			console.log("schedule "+document.getElementById("timeInput").value);
+			console.log("schedule "+document.getElementById("dateInput").value);	
+		});
+	
+		$("#startBrewingButton").click((event)=>{
+			console.log("brew button clicked");
+			// document.getElementById("progress").style.width = "0%";
+			var brewStatus = rh.fbSingleCoffeeMakerManager.isBrewing;
+			if (!brewStatus) {
+				$("#startBrewingButton").html("Stop Brewing");
+			}
+			else {
+				$("#startBrewingButton").html("Start Brewing Now");
+			}
+			console.log("isBrewing = ", rh.fbSingleCoffeeMakerManager.isBrewing);
+			rh.fbSingleCoffeeMakerManager.update(rh.fbSingleCoffeeMakerManager.name, rh.fbSingleCoffeeMakerManager.ipAddress, !brewStatus);
+		});
+
+		$("#settingsButton").click((event)=>{
+			console.log("configure coffee maker settings");
+		});
+
 		//Make the title the coffee maker name
-		console.log(rh.fbSingleCoffeeMakerManager.name);
-		// $("#coffeeName")
+		
+		
 
 		// TODO: implement edit coffee maker
 		// $("#submitEditQuote").click((event) => {
@@ -239,6 +270,19 @@ rh.DetailPageController = class {
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
 
+		console.log(rh.fbSingleCoffeeMakerManager.name);
+		$("#coffeeName").html(rh.fbSingleCoffeeMakerManager.name);
+		// $("#coffeeIcon").attr("src","images/coffee_icon.svg");
+
+				
+		
+
+		// var timeInput = document.getElementById("timeInput");
+		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){
+		// 	e.preventDefault();
+		// 	console.log(timeInput.value);
+		// });
+
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
 			$("#menuEdit").show();
@@ -246,6 +290,11 @@ rh.DetailPageController = class {
 		}
 
 	}
+}
+
+function inputChange(e){
+	console.log(document.getElementById("timeInput").value);
+	console.log(document.getElementById("dateInput").value);
 }
 
 rh.FbAuthManager = class {
