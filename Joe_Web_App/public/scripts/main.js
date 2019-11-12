@@ -202,6 +202,8 @@ rh.FbSingleCoffeeMakerManager = class {
 	get isBrewing() {
 		return this._document.get(rh.KEY_IS_BREWING);
 	}
+
+	
 }
 
 
@@ -242,6 +244,14 @@ rh.DetailPageController = class {
 
 		$("#settingsButton").click((event)=>{
 			console.log("configure coffee maker settings");
+		});
+
+
+		$("#submitDeleteCoffeeMaker").click((event)=>{
+			rh.fbSingleCoffeeMakerManager.delete().then((params)=>{
+				console.log("deleted coffee maker");
+				window.location.href = "/MainPage.html";
+			})
 		});
 
 		//Make the title the coffee maker name
