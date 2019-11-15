@@ -6,6 +6,8 @@ Link to Project Vault for Web App: https://rosehulmanprojectvault.org/project/-L
 
 Link to Web App Figma Mocks: https://www.figma.com/file/IpsSkWnzFe4naCMB6uZ7Vr/Main-Page?node-id=4%3A180
 
+Link to app: https://not-your-average-cup-of-joe.firebaseapp.com/
+
 
 Timeline:
 
