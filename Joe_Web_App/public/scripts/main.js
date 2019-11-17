@@ -211,8 +211,7 @@ rh.FbSingleCoffeeMakerManager = class {
 // TODO: implement single coffee maker pages
 rh.DetailPageController = class {
 	constructor() {
-		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
-		
+		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));	
 		$("#editCoffeeMakerDialog").on("show.bs.modal", function (e) {
 			$("#inputCoffeeMaker").val(rh.fbSingleCoffeeMakerManager.name);
 			$("#inputIPAddress").val(rh.fbSingleCoffeeMakerManager.ipAddress);
@@ -234,15 +233,14 @@ rh.DetailPageController = class {
 		$("#startBrewingButton").click((event)=>{
 			console.log("brew button clicked");
 			// document.getElementById("progress").style.width = "0%";
-			var brewStatus = rh.fbSingleCoffeeMakerManager.isBrewing;
-			if (!brewStatus) {
+			if (!rh.fbSingleCoffeeMakerManager.isBrewing) {
 				$("#startBrewingButton").html("Stop Brewing");
 			}
 			else {
 				$("#startBrewingButton").html("Start Brewing Now");
 			}
 			console.log("isBrewing = ", rh.fbSingleCoffeeMakerManager.isBrewing);
-			rh.fbSingleCoffeeMakerManager.update(rh.fbSingleCoffeeMakerManager.name, rh.fbSingleCoffeeMakerManager.ipAddress, !brewStatus);
+			rh.fbSingleCoffeeMakerManager.update(rh.fbSingleCoffeeMakerManager.name, rh.fbSingleCoffeeMakerManager.ipAddress, !rh.fbSingleCoffeeMakerManager.isBrewing);
 		});
 
 		$("#settingsButton").click((event)=>{
@@ -284,6 +282,13 @@ rh.DetailPageController = class {
 		console.log(rh.fbSingleCoffeeMakerManager.name);
 		$("#coffeeName").html(rh.fbSingleCoffeeMakerManager.name);
 		// $("#coffeeIcon").attr("src","images/coffee_icon.svg");
+
+		if (rh.fbSingleCoffeeMakerManager.isBrewing) {
+			console.log("bleh: ", rh.KEY_IS_BREWING);
+			$("#startBrewingButton").html("Stop Brewing");
+		} else {
+			$("#startBrewingButton").html("Start Brewing Now");
+		}
 
 				
 		
