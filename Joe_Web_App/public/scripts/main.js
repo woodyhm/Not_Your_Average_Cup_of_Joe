@@ -24,10 +24,11 @@ rh.fbSingleCoffeeMakerManager = null;
 rh.fbAuthManager = null;
 
 rh.CoffeeMaker = class {
-	constructor(id, name, ipAddress) {
+	constructor(id, name, ipAddress, uid) {
 		this.id = id;
 		this.name = name;
 		this.ipAddress = ipAddress;
+		this.uid = uid;
 	}
 }
 
@@ -82,17 +83,31 @@ rh.FbCoffeeMakersManager = class {
 		return new rh.CoffeeMaker(
 			this._documentSnapshots[index].id,
 			this._documentSnapshots[index].get(rh.KEY_NAME),
-			this._documentSnapshots[index].get(rh.KEY_IPADDRESS)
+			this._documentSnapshots[index].get(rh.KEY_IPADDRESS),
+			this._documentSnapshots[index].get(rh.KEY_UID)
 		);
 	}
 }
 
 rh.ListPageController = class {
 	constructor() {
+
+
 		rh.fbCoffeeMakersManager.beginListening(this.updateView.bind(this));
 		$("#settingModal").on("shown.bs.modal", function (e) {
 			$("#settingCloseButton").trigger("focus");
 		});
+
+		$("#menuMyCoffeeMakers").click((event)=>{
+			console.log("show only my coffee makers, uid: ",rh.fbAuthManager.uid);
+			window.location.href = 	`/MainPage.html?uid=${rh.fbAuthManager.uid}`;
+		});
+
+		$("#menuAllCoffeeMakers").click((event)=>{
+			console.log("show all coffee makers");
+			window.location.href = 	`/MainPage.html`;
+		});
+
 		$("#helpModal").on("shown.bs.modal", function (e) {
 			$("#helpCloseButton").trigger("focus");
 		});
@@ -138,8 +153,11 @@ rh.ListPageController = class {
 			//   <div class="coffee-maker-card-ipAddress text-right blockquote-footer">${coffeeMaker.ipAddress}</div>
 
 		$newCard.click((event) => {
-			console.log("You have clicked", coffeeMaker);
-			window.location.href = `/CoffeeMaker.html?id=${coffeeMaker.id}`;
+			console.log("You have clicked", coffeeMaker.uid, rh.fbAuthManager.uid);
+			if(coffeeMaker.uid==rh.fbAuthManager.uid){
+				window.location.href = `/CoffeeMaker.html?id=${coffeeMaker.id}`;
+			}
+			
 		});
 		return $newCard;
 	}
@@ -222,6 +240,16 @@ rh.DetailPageController = class {
 		$("#menuSignOut").click((event) => {
 			console.log("Sign out.");
 			rh.fbAuthManager.signOut();
+		});
+
+		$("#menuMyCoffeeMakers").click((event)=>{
+			console.log("show only my coffee makers, uid: ",rh.fbAuthManager.uid);
+			window.location.href = 	`/MainPage.html?uid=${rh.fbAuthManager.uid}`;
+		});
+
+		$("#menuAllCoffeeMakers").click((event)=>{
+			console.log("show all coffee makers");
+			window.location.href = 	`/MainPage.html`;
 		});
 
 		$("#scheduleButton").click((event)=>{
@@ -406,8 +434,8 @@ rh.initializePage = function () {
 	var urlParams = new URLSearchParams(window.location.search);
 	if ($("#list-page").length) {
 		console.log("On the list page");
-		const urlUid = urlParams.get('id');
-		console.log(urlParams);
+		const urlUid = urlParams.get('uid');
+		console.log(urlUid);
 		rh.fbCoffeeMakersManager = new rh.FbCoffeeMakersManager(urlUid);
 		new rh.ListPageController();
 	} else if ($("#detail-page").length) {
