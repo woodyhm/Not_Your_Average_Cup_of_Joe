@@ -17,7 +17,7 @@ rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
 rh.KEY_IS_BREWING = "isBrewing";
 
-rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
+// rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
 rh.fbCoffeeMakersManager = null;
 rh.fbSingleCoffeeMakerManager = null;
@@ -37,6 +37,7 @@ rh.FbCoffeeMakersManager = class {
 		this._documentSnapshots = [];
 		this._unsubscribe = null;
 		this._uid = uid;
+		console.log("id is ", uid);
 	}
 
 	beginListening(changeListener) {
@@ -400,7 +401,8 @@ rh.initializePage = function () {
 	var urlParams = new URLSearchParams(window.location.search);
 	if ($("#list-page").length) {
 		console.log("On the list page");
-		const urlUid = urlParams.get('uid');
+		const urlUid = urlParams.get('id');
+		console.log(urlParams);
 		rh.fbCoffeeMakersManager = new rh.FbCoffeeMakersManager(urlUid);
 		new rh.ListPageController();
 	} else if ($("#detail-page").length) {

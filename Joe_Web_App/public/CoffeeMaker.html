@@ -19,9 +19,9 @@
       <i class="material-icons">menu</i>
     </span>
     <div class="dropdown-menu dropdown-menu-right">
-      <button class="dropdown-item" type="button">Coffee Makers</button>
-      <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Settings</button>
-      <button class="dropdown-item" type="button" data-target="#editCoffeeMakerDialog" data-toggle="modal">Help</button>
+      <button id="menuMyCoffeeMakers" class="dropdown-item" type="button">Coffee Makers</button>
+      <button id="menuSettings" class="dropdown-item" type="button" data-target="#settingModal" data-toggle="modal">Settings</button>
+      <button id="menuHelp" class="dropdown-item" type="button" data-target="#helpModal" data-toggle="modal">Help</button>
       <button id="menuSignOut" class="dropdown-item" type="button" >Sign out</button>
     </div>
   </div>
@@ -127,6 +127,29 @@
     </div>
   </div>
     
+  <!--Settings Modal-->
+<!-- <button type="button" id="settingCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Settings modal</button> -->
+
+<div id="settingModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      Settings
+    </div>
+  </div>
+</div>
+
+
+<!--Help Modal-->
+<!-- <button type="button" id="helpCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Help modal</button> -->
+
+<div id="helpModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      Help
+      <button type="button" id="emailJoeButton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Email ask_joe@gmail.com</button>
+    </div>
+  </div>
+</div>
   
 
 

@@ -82,6 +82,10 @@ input[type=password]:focus {
 .navbar {
   background-color: #FF473A;
   color: white;
+  
+}
+.navbar-brand:hover{
+  color:white;
 }
 
 /*MAIN PAGE */

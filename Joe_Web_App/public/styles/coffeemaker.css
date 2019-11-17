@@ -48,19 +48,19 @@ body{
     } */
 }
 
-#queue{
+/* #queue{
     
 }
 
 #startButton{
 
-}
+} */
 
-/* #status{
+#status{
     background-color:#ff0000;
 } */
 
-#schedule{
+/* #schedule{
     
 }
 
@@ -68,9 +68,9 @@ body{
 
 }
 
-#settingButton{
-
-}
+#settingButton{ 
+ 
+} */
 
 .card{
     margin-left: 5px;
