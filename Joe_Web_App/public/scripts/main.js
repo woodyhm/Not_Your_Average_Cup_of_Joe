@@ -277,6 +277,7 @@ rh.DetailPageController = class {
 			// schedule = schedule.replace('-','');
 			// schedule = schedule.replace(':','');
 			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+			this.addToQueue();
 		});
 
 		
@@ -336,22 +337,22 @@ rh.DetailPageController = class {
 
 		let $newList = $("<ul></ul>").attr("id", "usersList").addClass("list-group");
 
-		for (let k = 0; k < rh.fbSingleCoffeeMakerManager.users.length; k++) {
-			const $newUser = this.createUsers(
-				rh.fbSingleCoffeeMakerManager.users[k],k
-			);
+		// for (let k = 0; k < rh.fbSingleCoffeeMakerManager.users.length; k++) {
+		// 	const $newUser = this.createUsers(
+		// 		rh.fbSingleCoffeeMakerManager.users[k],k
+		// 	);
 			
-			$newList.append($newUser);
-		}
-		$("#usersListContainer").append($newList);
+		// 	$newList.append($newUser);
+		// }
+		// $("#usersListContainer").append($newList);
 
-		for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
-			$(`#delete${index}`).click((event)=>{
-				console.log(`delete ${index}`,$(`#list${index}`).html());
-				rh.fbSingleCoffeeMakerManager.deleteUser(index);
-			});
+		// for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
+		// 	$(`#delete${index}`).click((event)=>{
+		// 		console.log(`delete ${index}`,$(`#list${index}`).html());
+		// 		rh.fbSingleCoffeeMakerManager.deleteUser(index);
+		// 	});
 	
-		}
+		// }
 		
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
@@ -370,6 +371,15 @@ rh.DetailPageController = class {
 		  
 			  
 		return $newUser;
+	}
+
+	addToQueue(time,index){
+		const newTime = $(`
+			<li id="time${time}" class="list-group-item">
+				<div> ${time} <button id="delete${index}" class="btn btn-danger float-right">Remove From Queue</button></div>
+			</li>
+		`);
+		return newTime;
 	}
 
 	
