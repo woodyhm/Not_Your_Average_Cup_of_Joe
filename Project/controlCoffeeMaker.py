@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import Adafruit_BBIO.GPIO as GPIO
 from datetime import datetime
 import threading
@@ -45,22 +46,63 @@ count = 0;
 
 usr = datetime.now()
 
+#-----------------------------------------------
+#Schedule Array
+
+schedule_array = []
+#-----------------------------------------------
+
+
 def main():
     
-    while (1)
+    while (True):
         status = status_ref.get()
         # print(format(status.to_dict()[u'isBrewing']))
         if (format(status.to_dict()[u'isBrewing']) == "True"):
             print("About to start brewing")
             start_brewing()
         time.sleep(10)
-        # requests.post(status_ref + 'serviceAccountKey.json', json.dumps(false))
+        # requests.post(status_ref + 'serviceAccountKey.json', json.dumps(false)) # Posts things to firebase
         
         
         print(format(status.to_dict()[u'isBrewing']))
         while (format(status.to_dict()[u'isBrewing']) == "False"):
             status = status_ref.get()
             print("Blah")
+    
+        #-----------------------------------------------
+        #Scheduling
+        
+        # Assuming I have an array:
+        # [year, month, day, hour, minute]
+        
+        newtime = datetime(year, month, day, hour, minute)
+        
+        # Check if newtime is already in array. If so, ignore.
+        # If newtime isn't in array, add it to the array
+        
+        for x in schedule_array:
+            if x == newtime:
+                print("This time already exists on the schedule")
+                break
+            else:
+                print("Scheduled coffee at: ", x)
+                schedule_array.append(newtime)
+        
+        # Check if scheduled time has passed
+        
+        for y in schedule_array:
+            if y <= now:
+                print("Scheduled coffee at ", y, " is starting")
+                start_brewing()
+            
+        
+        #-----------------------------------------------
+            
+        
+        
+        
+        
             
     
 def start_timer():

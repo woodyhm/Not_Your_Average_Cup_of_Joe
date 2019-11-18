@@ -207,13 +207,13 @@ rh.FbSingleCoffeeMakerManager = class {
 		return this._ref.delete();
 	}
 
-	// deleteUser(index){
-	// 	for(let k=0;k<this.users.length;k++){
-	// 		if(index==k){
-	// 			this._document.delete(users[index]);
-	// 		}
-	// 	}
-	// }
+	deleteUser(index){
+		for(let k=0;k<this.users.length;k++){
+			if(index==k){
+				this._ref.update({[Users + ]: firebase.firestore.FieldValue.delete()});
+			}
+		}
+	}
 
 	get name() {		
 		return this._document.get(rh.KEY_NAME);
@@ -326,13 +326,13 @@ rh.DetailPageController = class {
 		}
 		$("#usersListContainer").append($newList);
 
-		// for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
-		// 	$(`#delete${index}`).click((event)=>{
-		// 		console.log(`delete ${index}`,$(`#list${index}`).html());
-		// 		rh.fbSingleCoffeeMakerManager.deleteUser(index);
-		// 	});
+		for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
+			$(`#delete${index}`).click((event)=>{
+				console.log(`delete ${index}`,$(`#list${index}`).html());
+				rh.fbSingleCoffeeMakerManager.deleteUser(index);
+			});
 	
-		// }
+		}
 		
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
