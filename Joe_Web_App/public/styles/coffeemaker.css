@@ -57,21 +57,18 @@ body{
 
 } */
 
-#status{
-    background-color:#ff0000;
-} */
-
-/* #schedule{
-    
+#schedule, #queue{
+    font-size: 20px;
 }
 
-#history{
-
+#timeText {
+    font-size: 16px;
+    margin-top: 5px;
 }
 
-#settingButton{ 
- 
-} */
+#dateText {
+    font-size: 16px;
+}
 
 .card{
     margin-left: 5px;

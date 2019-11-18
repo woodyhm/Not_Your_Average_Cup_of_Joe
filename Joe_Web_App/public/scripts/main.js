@@ -286,9 +286,11 @@ rh.DetailPageController = class {
 			// document.getElementById("progress").style.width = "0%";
 			if (!rh.fbSingleCoffeeMakerManager.isBrewing) {
 				$("#startBrewingButton").html("Stop Brewing");
+				$("#status").html("Status: Coffee Brewing")
 			}
 			else {
 				$("#startBrewingButton").html("Start Brewing Now");
+				$("#status").html("Status: Available")
 			}
 			console.log("isBrewing = ", rh.fbSingleCoffeeMakerManager.isBrewing);
 			rh.fbSingleCoffeeMakerManager.update(rh.fbSingleCoffeeMakerManager.name, !rh.fbSingleCoffeeMakerManager.isBrewing);
@@ -318,10 +320,13 @@ rh.DetailPageController = class {
 		if (rh.fbSingleCoffeeMakerManager.isBrewing) {
 			console.log("bleh: ", rh.KEY_IS_BREWING);
 			$("#startBrewingButton").html("Stop Brewing");
+			$("#startBrewingButton").attr("class","btn btn-danger");
+			$("#status").html("Status: Coffee Brewing")
 		} else {
 			$("#startBrewingButton").html("Start Brewing Now");
+			$("#startBrewingButton").attr("class","btn btn-success");
+			$("#status").html("Status: Available")
 		}
-
 
 		// var timeInput = document.getElementById("timeInput");
 		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){

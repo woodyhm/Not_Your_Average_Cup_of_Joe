@@ -21,107 +21,104 @@
     <div class="dropdown-menu dropdown-menu-right">
       <button id="menuMyCoffeeMakers" class="dropdown-item" type="button">My Coffee Makers</button>
       <button id="menuAllCoffeeMakers" class="dropdown-item" type="button">All Coffee Makers</button>
-      <button id="menuSettings" class="dropdown-item" type="button" data-target="#settingModal" data-toggle="modal">Settings</button>
-      <button id="menuHelp" class="dropdown-item" type="button" data-target="#helpModal" data-toggle="modal">Help</button>
-      <button id="menuSignOut" class="dropdown-item" type="button" >Sign out</button>
+      <button id="menuSettings" class="dropdown-item" type="button" data-target="#settingModal"
+        data-toggle="modal">Settings</button>
+      <button id="menuHelp" class="dropdown-item" type="button" data-target="#helpModal"
+        data-toggle="modal">Help</button>
+      <button id="menuSignOut" class="dropdown-item" type="button">Sign out</button>
     </div>
   </div>
 </nav>
 
-<body background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
- 
+<body
+  background="https://d.newsweek.com/en/full/1531241/national-coffee-day-2019-deals.jpg?w=1600&h=1200&q=88&f=31fefb8c0d242dc785c04719f37bfea7">
+
 
 
   <div id="detail-page" class="page-container-fluid">
-    
-    <span id="title" class="text-center"> 
+
+    <span id="title" class="text-center">
       <h3 id="coffeeName"> </h3>
       <!-- <img id="coffeeIcon" src="images/coffee_icon.svg"> -->
     </span>
 
 
     <div class="mx-auto col-14">
-    
+
       <div class="row">
-        <div  class="col card" style="width: 18rem;">
-            <div class="card-body">
-              <div id="status">Status: Brewing</div>
-              <!-- <div id="status" style="background-color:green">Ready to Brew</div> -->
-             
-              <div  class="progress" style="height: 20px;">
-                <div id="progress" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              
-            </div>
+        <div class="col" style="width: 18rem;">
+          <div id="status" class="btn btn-light">Status: Available</div>
+          <!-- <div id="status" style="background-color:green">Status: Ready to Brew</div> -->
         </div>
-  
-        <div id="startBrwingContainer" class="col card" style="width: 18rem;">
-            <div id="startBrewingButton" type="button" class="btn card-body">
-              Start Brewing Now
-            </div>
-          </div>
       </div>
-  
-  
-  
+
+
+
       <div class="row">
-        <div id="users" class="col card" style="width: 18rem;" >
-            <div class="card-body">
-              Users 
-              <span>
-                <button id="addUser" class="btn btn-primary">Add User</button>
-                <!-- <button id="deleteUser" class="btn btn-secondary">Delete User</button> -->
-              </span>
-              <div id="usersListContainer">
-                <ul id="usersList" class="list-group">
+        <div id="queue" class="col card" style="width: 18rem;">
+          <div class="card-body">
+            Queue
+            <span>
+              <!-- <button id="addUser" class="btn btn-primary">Add User</button> -->
+              <!-- <button id="deleteUser" class="btn btn-secondary">Delete User</button> -->
+            </span>
+            <div id="queueListContainer">
+              <ul id="queueList" class="list-group">
 
-                </ul>
-              </div>
-              
+              </ul>
             </div>
+
+          </div>
         </div>
-  
-        <div id="schedule" class="col card" style="width: 18rem;">
-            <div class="card-body">
-              Schedule:
 
-              <div class="form-group">
-                <label for="timeInput">Time:</label>
-                <input type="time" class="form-control" id="timeInput" aria-describedby="time" placeholder="Enter Time" onChange="inputChange(event)">
-              </div>
+        <div id="scheduleCard" class="col card" style="width: 18rem;">
+          <div id="schedule" class="card-body">
+            Schedule:
 
-              <div class="form-group">
-                <label for="dateInput">Date:</label>
-                <input type="date" class="form-control" id="dateInput" aria-describedby="time" placeholder="Enter Date" onChange="inputChange(event)">
-             </div>     
-             <button id="scheduleButton" type="button" class="btn btn-dark">Schedule</button>
+            <div id="timeText" class="form-group">
+              <label for="timeInput">Time:</label>
+              <input type="time" class="form-control" id="timeInput" aria-describedby="time" placeholder="Enter Time"
+                onChange="inputChange(event)">
+            </div>
+
+            <div id="dateText" class="form-group">
+              <label for="dateInput">Date:</label>
+              <input type="date" class="form-control" id="dateInput" aria-describedby="time" placeholder="Enter Date"
+                onChange="inputChange(event)">
+            </div>
+            <button id="scheduleButton" type="button" class="btn btn-dark">Schedule</button>
 
           </div>
         </div>
       </div>
-  
+
       <div id="history" class="row">
-        <div class="col card" style="width: 18rem;">
-            <div class="card-body">
-              Queue
-            </div>
+        <!-- <div class="col card" style="width: 18rem;">
+          <div class="card-body">
+            Queue
+          </div>
+        </div> -->
+
+        <div id="settingsContainer" class="col" style="width: 18rem;">
+          <div id="settingsButton" type="button" class="btn btn-warning" data-target="#deleteCoffeeMakerDialog"
+            data-toggle="modal">
+            Delete Coffee Maker
+          </div>
         </div>
-  
-        <div id="settingsContainer" class="col card" style="width: 18rem;">
-            <div id="settingsButton" type="button" class="btn card-body" data-target="#deleteCoffeeMakerDialog" data-toggle="modal">
-              Delete Coffee Maker
-            </div>
+
+        <div id="startBrewingButton" type="button" class="btn btn-success">
+          Start Brewing Now
         </div>
       </div>
-  
-  
+
+
     </div>
 
 
   </div>
 
-  
-  
+
+
   <!-- Delete Modal -->
   <div class="modal fade" id="deleteCoffeeMakerDialog" tabindex="-1" role="dialog" aria-labelledby="add quote"
     aria-hidden="true">
@@ -132,36 +129,40 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
-          <button type="button" id="submitDeleteCoffeeMaker" class="btn btn-outline-light" data-dismiss="modal">Delete</button>
+          <button type="button" id="submitDeleteCoffeeMaker" class="btn btn-outline-light"
+            data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>
   </div>
-    
+
   <!--Settings Modal-->
-<!-- <button type="button" id="settingCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Settings modal</button> -->
+  <!-- <button type="button" id="settingCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Settings modal</button> -->
 
-<div id="settingModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      Settings
+  <div id="settingModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        Settings
+      </div>
     </div>
   </div>
-</div>
 
 
-<!--Help Modal-->
-<!-- <button type="button" id="helpCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Help modal</button> -->
+  <!--Help Modal-->
+  <!-- <button type="button" id="helpCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Help modal</button> -->
 
-<div id="helpModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      Help
-      <button type="button" id="emailJoeButton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Email ask_joe@gmail.com</button>
+  <div id="helpModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        Help
+        <button type="button" id="emailJoeButton" class="btn btn-primary" data-toggle="modal"
+          data-target="#exampleModal" data-whatever="@mdo">Email ask_joe@gmail.com</button>
+      </div>
     </div>
   </div>
-</div>
-  
+
 
 
 
