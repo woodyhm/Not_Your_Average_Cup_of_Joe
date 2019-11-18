@@ -36,10 +36,9 @@ rh.CoffeeMaker = class {
 		else{
 			this.isBrewing = "Available";
 		}
-
-		// for(let k=0;k<users.length;k++){
-		// 	this.users[k] = users[k];
-		// }
+		console.log("test ",users.length, users);
+		
+		
 		
 		
 	}
