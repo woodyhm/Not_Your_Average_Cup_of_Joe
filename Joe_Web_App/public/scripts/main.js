@@ -16,6 +16,7 @@ rh.KEY_IPADDRESS = "IPAddress";
 rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
 rh.KEY_IS_BREWING = "isBrewing";
+rh.KEY_USERS = "Users"
 
 // rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -24,11 +25,23 @@ rh.fbSingleCoffeeMakerManager = null;
 rh.fbAuthManager = null;
 
 rh.CoffeeMaker = class {
-	constructor(id, name, ipAddress, uid) {
+	constructor(id, name, ipAddress, isBrewing, uid, users) {
 		this.id = id;
 		this.name = name;
 		this.ipAddress = ipAddress;
 		this.uid = uid;
+		if(isBrewing){
+			this.isBrewing = "Brewing"
+		}
+		else{
+			this.isBrewing = "Available";
+		}
+
+		for(let k=0;k<users.length;k++){
+			this.users[k] = users[k];
+		}
+		
+		
 	}
 }
 
@@ -84,7 +97,9 @@ rh.FbCoffeeMakersManager = class {
 			this._documentSnapshots[index].id,
 			this._documentSnapshots[index].get(rh.KEY_NAME),
 			this._documentSnapshots[index].get(rh.KEY_IPADDRESS),
-			this._documentSnapshots[index].get(rh.KEY_UID)
+			this._documentSnapshots[index].get(rh.KEY_IS_BREWING),
+			this._documentSnapshots[index].get(rh.KEY_UID),
+			this._documentSnapshots[index].get(rh.KEY_USERS)
 		);
 	}
 }
@@ -146,7 +161,7 @@ rh.ListPageController = class {
 	createCoffeeMakerCard(coffeeMaker) {
 		const $newCard = $(`
 		  <li id="${coffeeMaker.id}" class="coffee-maker-card list-group-item">
-		     <div class="coffee-maker-card-name">${coffeeMaker.name}</div>
+		     <div class="coffee-maker-card-name">${coffeeMaker.name}<span class="float-right">${coffeeMaker.isBrewing}</span></div>
 		     
 		  </li>`);
 		  
@@ -220,6 +235,20 @@ rh.FbSingleCoffeeMakerManager = class {
 
 	get isBrewing() {
 		return this._document.get(rh.KEY_IS_BREWING);
+	}
+
+	get status(){
+		if(this._document.get(rh.KEY_IS_BREWING)){
+			return "Brewing"
+		}
+		else{
+			return "Available"
+		}
+
+	}
+
+	get users(){
+		return this._document.get(rh.KEY_USERS);
 	}
 
 	
@@ -318,14 +347,25 @@ rh.DetailPageController = class {
 			$("#startBrewingButton").html("Start Brewing Now");
 		}
 
-				
 		
-
+		
 		// var timeInput = document.getElementById("timeInput");
 		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){
 		// 	e.preventDefault();
 		// 	console.log(timeInput.value);
 		// });
+
+		let $newList = $("<ul></ul>").attr("id", "usersList").addClass("list-group");
+
+		for (let k = 0; k < rh.fbSingleCoffeeMakerManager.users.length; k++) {
+			const $newUser = this.createUsers(
+				rh.fbSingleCoffeeMakerManager.users[k],k
+			);
+			$newList.append($newUser);
+		}
+		$("#usersListContainer").append($newList);
+
+		
 
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
@@ -334,6 +374,24 @@ rh.DetailPageController = class {
 		}
 
 	}
+
+	createUsers(user,index) {
+		const $newUser = $(`
+		  <li id="${index}" class="list-group-item">
+			 <div>${user} <button id="delete${index}" class="btn btn-danger float-right">Delete User</button> </div>	 
+		  </li>`);
+
+		  
+			  
+		return $newUser;
+	}
+
+	deleteUser(user,index){
+		$(`delete${index}`).click((event)=>{
+			console.log("delete ",index,user);
+		});
+	}
+
 }
 
 function inputChange(e){
