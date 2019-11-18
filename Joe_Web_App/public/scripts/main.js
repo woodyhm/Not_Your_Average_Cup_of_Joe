@@ -15,6 +15,7 @@ rh.KEY_NAME = "Name";
 rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
 rh.KEY_IS_BREWING = "isBrewing";
+rh.KEY_SCHEDULE_TIME = "scheduleBrewTime"
 
 // rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -203,6 +204,15 @@ rh.FbSingleCoffeeMakerManager = class {
 			console.log("The update is complete");
 		});
 	}
+
+	updateSchedule(scheduleBrewTime){
+		this._ref.update(
+			{[rh.KEY_SCHEDULE_TIME]: scheduleBrewTime,
+			}).then((docRef)=>{
+				console.log("Upate Schdule: ",scheduleBrewTime);
+			});
+	}
+
 	delete() {
 		return this._ref.delete();
 	}
@@ -210,7 +220,7 @@ rh.FbSingleCoffeeMakerManager = class {
 	deleteUser(index){
 		for(let k=0;k<this.users.length;k++){
 			if(index==k){
-				this._ref.update({[Users + ]: firebase.firestore.FieldValue.delete()});
+				// this._ref.update({[Users + ]: firebase.firestore.FieldValue.delete()});
 			}
 		}
 	}
@@ -257,10 +267,19 @@ rh.DetailPageController = class {
 		});
 
 		$("#scheduleButton").click((event)=>{
+			let time = document.getElementById("timeInput").value;
+			let date = document.getElementById("dateInput").value;
 			console.log("schedule coffee by time and date");
-			console.log("schedule "+document.getElementById("timeInput").value);
-			console.log("schedule "+document.getElementById("dateInput").value);	
+			console.log("schedule "+time);
+			console.log("schedule "+date);
+			// date.replace('-','');	
+			let schedule = date+"-"+time;
+			// schedule = schedule.replace('-','');
+			// schedule = schedule.replace(':','');
+			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
 		});
+
+		
 	
 		$("#startBrewingButton").click((event)=>{
 			console.log("brew button clicked");
