@@ -37,9 +37,9 @@ rh.CoffeeMaker = class {
 			this.isBrewing = "Available";
 		}
 
-		for(let k=0;k<users.length;k++){
-			this.users[k] = users[k];
-		}
+		// for(let k=0;k<users.length;k++){
+		// 	this.users[k] = users[k];
+		// }
 		
 		
 	}
@@ -221,6 +221,14 @@ rh.FbSingleCoffeeMakerManager = class {
 		return this._ref.delete();
 	}
 
+	// deleteUser(index){
+	// 	for(let k=0;k<this.users.length;k++){
+	// 		if(index==k){
+	// 			this._document.delete(users[index]);
+	// 		}
+	// 	}
+	// }
+
 	get name() {		
 		return this._document.get(rh.KEY_NAME);
 	}
@@ -361,12 +369,19 @@ rh.DetailPageController = class {
 			const $newUser = this.createUsers(
 				rh.fbSingleCoffeeMakerManager.users[k],k
 			);
+			
 			$newList.append($newUser);
 		}
 		$("#usersListContainer").append($newList);
 
+		// for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
+		// 	$(`#delete${index}`).click((event)=>{
+		// 		console.log(`delete ${index}`,$(`#list${index}`).html());
+		// 		rh.fbSingleCoffeeMakerManager.deleteUser(index);
+		// 	});
+	
+		// }
 		
-
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
 			$("#menuEdit").show();
@@ -377,7 +392,7 @@ rh.DetailPageController = class {
 
 	createUsers(user,index) {
 		const $newUser = $(`
-		  <li id="${index}" class="list-group-item">
+		  <li id="list${index}" class="list-group-item">
 			 <div>${user} <button id="delete${index}" class="btn btn-danger float-right">Delete User</button> </div>	 
 		  </li>`);
 
@@ -386,11 +401,7 @@ rh.DetailPageController = class {
 		return $newUser;
 	}
 
-	deleteUser(user,index){
-		$(`delete${index}`).click((event)=>{
-			console.log("delete ",index,user);
-		});
-	}
+	
 
 }
 
