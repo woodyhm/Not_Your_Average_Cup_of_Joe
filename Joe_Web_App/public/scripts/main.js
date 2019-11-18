@@ -194,7 +194,7 @@ rh.FbSingleCoffeeMakerManager = class {
 		this._unsubscribe();
 	}
 
-	update(name, ipAdress, isBrewing) {
+	update(name, isBrewing) {
 		this._ref.update({
 			[rh.KEY_NAME]: name,
 			[rh.KEY_IS_BREWING]: isBrewing,
@@ -286,25 +286,6 @@ rh.DetailPageController = class {
 				window.location.href = "/MainPage.html";
 			})
 		});
-
-		//Make the title the coffee maker name
-		
-		
-
-		// TODO: implement edit coffee maker
-		// $("#submitEditQuote").click((event) => {
-		// 	const name = $("#inputCoffeeMaker").val();
-		// 	const ipAddress = $("#inputIPAddress").val();
-		// 	rh.fbSingleCoffeeMakerManager.update(name, ipAddress);
-		// });
-
-		// TODO: implement delete coffee maker
-		// $("#deleteQuote").click((event) => {
-		// 	rh.fbSingleCoffeeMakerManager.delete().then(() => {
-		// 		window.location.href = "/MainPage.html";
-		// 	});
-		// });
-
 	}
 
 	updateView() {
@@ -322,8 +303,6 @@ rh.DetailPageController = class {
 			$("#startBrewingButton").html("Start Brewing Now");
 		}
 
-				
-		
 
 		// var timeInput = document.getElementById("timeInput");
 		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){
