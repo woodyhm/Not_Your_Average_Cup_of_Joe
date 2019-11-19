@@ -9,6 +9,16 @@ body {
 
 /*LOGIN PAGE*/
 
+#login-page {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+#loginForm {
+  /* display: inline-block; */
+}
+
 /* Add styles to the login form container */
 .container {
   font-family: Montserrat;
@@ -163,16 +173,22 @@ input[type=password]:focus {
 
 #startBrewingButton {
   margin: 10px;
-  /* background-color: #FF473A;
-  color: white; */
-  position: absolute;
-  right: 2px;
 }
 
 #settingsButton {
   margin: 10px;
-  /* background-color: #FF473A;
-  color: white; */
   position: absolute;
   left: 2px;
+}
+
+#emailJoeButton {
+  position: absolute;
+  right: 2px;
+}
+
+#coffeePageContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
