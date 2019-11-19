@@ -412,15 +412,21 @@ rh.DetailPageController = class {
 		// this.deleteAfterTimePassed()
 
 	}
-
 	
 
 	addToQueue(time,index){
 		const newTime = $(`
 			<li id="time${index}" class="list-group-item">
-				<div> ${time} <button id="delete${index}" class="btn myDeleteButton btn-danger float-right">Remove From Queue</button></div>
+				<div> ${time} 
+					<span id="delete${index}" class="float-right" data-toggle="dropdown">
+       					<i class="material-icons">cancel</i>
+     				</span>
+				</div>
 			</li>
 		`);
+
+		// <button id="delete${index}" class="btn myDeleteButton btn-danger float-right">Remove From Queue</button>
+
 		// console.log(newTime);
 		return newTime;
 	}
