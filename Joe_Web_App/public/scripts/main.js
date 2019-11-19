@@ -34,6 +34,9 @@ rh.CoffeeMaker = class {
 		this.name = name;
 		this.isBrewing = isBrewing;
 		this.uid = uid;
+		this.schedules = [];
+		this.deleteBrewTime = "";
+		this.scheduleBrewTime = "";
 	}
 }
 
@@ -69,11 +72,16 @@ rh.FbCoffeeMakersManager = class {
 	}
 
 	add(name) {
+		let list = [""];
+		let temp = ""
 		this._ref.add({
 			[rh.KEY_NAME]: name,
 			[rh.KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
 			[rh.KEY_UID]: rh.fbAuthManager.uid,
 			[rh.KEY_IS_BREWING]: false,
+			[rh.KEY_SCHEDULES]:list,
+			[rh.KEY_SCHEDULE_TIME]:temp,
+			[rh.KEY_DELETE_TIME]:temp,
 		}).then((docRef) => {
 			console.log("Document has been added with id", docRef.id);
 		}).catch((error) => {
@@ -88,7 +96,8 @@ rh.FbCoffeeMakersManager = class {
 			this._documentSnapshots[index].id,
 			this._documentSnapshots[index].get(rh.KEY_NAME),
 			this._documentSnapshots[index].get(rh.KEY_IS_BREWING),
-			this._documentSnapshots[index].get(rh.KEY_UID)
+			this._documentSnapshots[index].get(rh.KEY_UID),
+			
 		);
 	}
 }
@@ -215,21 +224,21 @@ rh.FbSingleCoffeeMakerManager = class {
 	deleteFromSchedule(deleteBrewTime){
 		this._ref.update(
 			{[rh.KEY_DELETE_TIME]: deleteBrewTime,
+				
 			}).then((docRef)=>{
-				console.log("Upate Schdule: ",deleteBrewTime);
+				console.log("Delete from Schdule: ",deleteBrewTime);
 			});
 	}
+	
+	setSchedule(schedules){
+		this._ref.update({[rh.KEY_SCHEDULES]: schedules}).then((docRef)=>{
+			console.log("Schedules: ", schedules);
+		});
+	}
+
 
 	delete() {
 		return this._ref.delete();
-	}
-
-	deleteUser(index){
-		for(let k=0;k<this.users.length;k++){
-			if(index==k){
-				// this._ref.update({[Users + ]: firebase.firestore.FieldValue.delete()});
-			}
-		}
 	}
 
 	get name() {		
@@ -247,10 +256,12 @@ rh.FbSingleCoffeeMakerManager = class {
 	get schedules(){
 		return this._document.get(rh.KEY_SCHEDULES);
 	}
-	
-	setSchedule(){
-		this._ref.update({[rh.KEY_SCHEDULES]:rh.schedules});
+
+	get lastTouched(){
+		return this._document.get(rh.KEY_LAST_TOUCHED);
 	}
+	
+	
 	
 }
 
@@ -258,9 +269,7 @@ rh.FbSingleCoffeeMakerManager = class {
 // TODO: implement single coffee maker pages
 rh.DetailPageController = class {
 	constructor() {
-		
 		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
-		
 
 		$("#editCoffeeMakerDialog").on("show.bs.modal", function (e) {
 			$("#inputCoffeeMaker").val(rh.fbSingleCoffeeMakerManager.name);
@@ -285,6 +294,7 @@ rh.DetailPageController = class {
 
 		
 		$("#scheduleButton").click((event)=>{
+			
 			let time = document.getElementById("timeInput").value;
 			let date = document.getElementById("dateInput").value;
 			console.log("schedule coffee by time and date");
@@ -294,17 +304,12 @@ rh.DetailPageController = class {
 			let schedule = date+"-"+time;
 			// schedule = schedule.replace('-','');
 			// schedule = schedule.replace(':','');
-			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
 			rh.schedules.push(schedule);
-			rh.fbSingleCoffeeMakerManager.setSchedule();
-			this.updateView();
-			// console.log("array of schedules "+rh.schedules.toString());
+			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+			rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			// this.updateView();
+			this.deleteAfterTimePassed();
 		});
-
-		
-
-		
-		
 		
 	
 		$("#startBrewingButton").click((event)=>{
@@ -333,6 +338,8 @@ rh.DetailPageController = class {
 				window.location.href = "/MainPage.html";
 			})
 		});
+
+		
 	}
 
 	updateView() {
@@ -357,39 +364,20 @@ rh.DetailPageController = class {
 			$("#status").html("Status: Available")
 		}
 
-		// var timeInput = document.getElementById("timeInput");
-		// document.querySelector("div.form-group").addEventListener("#scheduleButton",function(e){
-		// 	e.preventDefault();
-		// 	console.log(timeInput.value);
-		// });
-
-		// let $newList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
-
-		// for (let k = 0; k < rh.fbSingleCoffeeMakerManager.users.length; k++) {
-		// 	const $newUser = this.createUsers(
-		// 		rh.fbSingleCoffeeMakerManager.users[k],k
-		// 	);
-			
-		// 	$newList.append($newUser);
-		// }
-		// $("#usersListContainer").append($newList);
-
-		// for(let index=0;index<rh.fbSingleCoffeeMakerManager.users.length;index++){
-		// 	$(`#delete${index}`).click((event)=>{
-		// 		console.log(`delete ${index}`,$(`#list${index}`).html());
-		// 		rh.fbSingleCoffeeMakerManager.deleteUser(index);
-		// 	});
-	
-		// }
-		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
 		
+		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
+
+		
+
 		if(rh.firstRun==true){
 			$("#queueList").remove();
 			for(let index=0;index<rh.schedules.length;index++){
 				const $newTime = this.addToQueue(rh.schedules[index],index);
 				$newQueueList.append($newTime);
+				// console.log(firebase.firestore.Timestamp.now().toDate());
 			}
 			$("#queueListContainer").append($newQueueList);
+			
 			rh.firstRun=false;
 		}
 		else{
@@ -414,24 +402,18 @@ rh.DetailPageController = class {
 
 		}
 		
+		
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
 			$("#menuEdit").show();
 			$("#menuDelete").show();
 		}
 
+		// this.deleteAfterTimePassed()
+
 	}
 
-	// createUsers(user,index) {
-	// 	const $newUser = $(`
-	// 	  <li id="list${index}" class="list-group-item">
-	// 		 <div>${user} <button id="delete${index}" class="btn btn-danger float-right">Delete User</button> </div>	 
-	// 	  </li>`);
-
-		  
-			  
-	// 	return $newUser;
-	// }
+	
 
 	addToQueue(time,index){
 		const newTime = $(`
@@ -445,17 +427,92 @@ rh.DetailPageController = class {
 
 	deleteFromQueue(index){
 		console.log("before " + rh.schedules);
-		if(index==rh.schedules.length-1){
-			rh.fbSingleCoffeeMakerManager.deleteFromSchedule(rh.schedules.pop());
-		}
+		// if(index==rh.schedules.length-1){
+		// 	rh.fbSingleCoffeeMakerManager.deleteFromSchedule(rh.schedules.pop());
+		// 	this.updateView();
+		// }
 		for(let k=0;k<rh.schedules.length;k++){
-			
 			if(k==index){
 				rh.fbSingleCoffeeMakerManager.deleteFromSchedule(rh.schedules[k]);
 				rh.schedules.splice(k,1);
 			}
 		}
 		console.log("after " + rh.schedules);
+		rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+		this.updateView();
+	}
+
+	deleteAfterTimePassed(){
+		console.log("delete after time passed");
+		let now = firebase.firestore.Timestamp.now().toDate().toString();
+		let year = now.substring(11,15);
+		let month = now.substring(4,7);
+		month = this.monthToNum(month);
+		let day = now.substring(8,10);
+		let hour = now.substring(16,18);
+		let minute = now.substring(19,21);
+		let temp = year+month+day+hour+minute;
+		
+		for(let k=0;k<rh.schedules.length;k++){
+			console.log("schedules ", rh.schedules[k]);
+			let sch = rh.schedules[k];
+			sch = sch.replace('-','');
+			sch = sch.replace('-','');	
+			sch = sch.replace('-','');	
+			sch = sch.replace(':','');
+			sch *=1;
+			// console.log(rh.shedules);
+			
+			let tem = parseInt(temp,10);
+			console.log(sch,tem);
+			if(sch<tem){
+				this.deleteFromQueue(k);
+				
+			}
+			
+		}
+		this.updateView();
+		
+	}
+
+	monthToNum(month){
+		if(month == "Jan"){
+			month = "1";
+		}
+		else if(month == "Feb"){
+			month = "2";
+		}
+		else if(month == "Mar"){
+			month = "3";
+		}
+		else if(month == "Apr"){
+			month = "4";
+		}
+		else if(month == "May"){
+			month = "5";
+		}
+		else if(month == "Jun"){
+			month = "6";
+		}
+		else if(month == "Jul"){
+			month = "7";
+		}
+		else if(month == "Aug"){
+			month = "8";
+		}
+		else if(month == "Sep"){
+			month = "9";
+		}
+		else if(month == "Oct"){
+			month = "10";
+		}
+		else if(month == "Nov"){
+			month = "11";
+		}
+		else if(month == "Dec"){
+			month = "12";
+		}
+		return month
 	}
 
 	
