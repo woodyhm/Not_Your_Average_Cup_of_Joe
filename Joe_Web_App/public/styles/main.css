@@ -10,13 +10,18 @@ body {
 /*LOGIN PAGE*/
 
 #login-page {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center; */
+  /* margin: 0 auto;
+  position: relative; */
 }
 
 #loginForm {
   /* display: inline-block; */
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
 }
 
 /* Add styles to the login form container */
@@ -27,7 +32,8 @@ body {
   /* right: 0; */
   margin: 25px;
   max-width: 300px;
-  padding: 16px;
+  padding: 32px;
+  text-shadow: white 0.1em 0.1em 0.2em;
 }
 
 /* Full-width input fields */
@@ -52,8 +58,9 @@ input[type=password]:focus {
 }
 
 #createAccount {
-  color: #000000;
+  color: white;
   padding: 0;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 /*CREATE ACCOUNT PAGE*/
