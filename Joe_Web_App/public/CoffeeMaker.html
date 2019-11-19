@@ -21,7 +21,7 @@
     <div class="dropdown-menu dropdown-menu-right">
       <button id="menuMyCoffeeMakers" class="dropdown-item" type="button">My Coffee Makers</button>
       <button id="menuAllCoffeeMakers" class="dropdown-item" type="button">All Coffee Makers</button>
-      <button id="menuHelp" class="dropdown-item" type="button" data-target="#helpModal"
+      <button id="menuHelp" class="dropdown-item" type="button" data-target="#emailModal"
         data-toggle="modal">Help</button>
       <button id="menuSignOut" class="dropdown-item" type="button">Sign out</button>
     </div>
@@ -106,50 +106,59 @@
       </div>
 
 
-    <!-- Delete Modal -->
-    <div class="modal fade" id="deleteCoffeeMakerDialog" tabindex="-1" role="dialog" aria-labelledby="add quote"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <h4>Warning!</h4>
-          <div class="modal-body">Are you sure you want to delete this coffee maker?</div>
+      <!-- Delete Modal -->
+      <div class="modal fade" id="deleteCoffeeMakerDialog" tabindex="-1" role="dialog" aria-labelledby="add quote"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Warning!</h4>
+            </div>
+            <div class="modal-body">Are you sure you want to delete this coffee maker?</div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
-            <button type="button" id="submitDeleteCoffeeMaker" class="btn btn-outline-light"
-              data-dismiss="modal">Delete</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCEL</button>
+              <button type="button" id="submitDeleteCoffeeMaker" class="btn btn-outline-light"
+                data-dismiss="modal">DELETE</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <!--Help Modal-->
-  <!-- <button type="button" id="helpCloseButton" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Help modal</button> -->
-
-  <div id="helpModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-    aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        Need help? Email Joe!
-        <button type="button" id="emailJoeButton" class="btn btn-primary" data-toggle="modal"
-          data-target="#exampleModal" data-whatever="@mdo">Email ask_joe@gmail.com</button>
+    <!--Help Modal-->
+    <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Need Help?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Email Joe at ask.joe.a.question@gmail.com!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
 
 
 
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/popper.min.js"></script>
-  <script src="scripts/bootstrap.min.js"></script>
-  <script src="/__/firebase/6.3.5/firebase-app.js"></script>
-  <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
-  <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
-  <script src="/__/firebase/init.js"></script>
-  <script src="scripts/main.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-app.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-firestore.js"></script>
+    <script src="/__/firebase/6.3.5/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
