@@ -98,10 +98,6 @@ rh.ListPageController = class {
 
 
 		rh.fbCoffeeMakersManager.beginListening(this.updateView.bind(this));
-		$("#settingModal").on("shown.bs.modal", function (e) {
-			$("#settingCloseButton").trigger("focus");
-		});
-
 		$("#menuMyCoffeeMakers").click((event)=>{
 			console.log("show only my coffee makers, uid: ",rh.fbAuthManager.uid);
 			window.location.href = 	`/MainPage.html?uid=${rh.fbAuthManager.uid}`;
@@ -111,10 +107,7 @@ rh.ListPageController = class {
 			console.log("show all coffee makers");
 			window.location.href = 	`/MainPage.html`;
 		});
-
-		$("#helpModal").on("shown.bs.modal", function (e) {
-			$("#helpCloseButton").trigger("focus");
-		});
+		
 		$("#emailModal").on("shown.bs.modal", function (e) {
 			$("#emailJoeButton").trigger("focus");
 		});
