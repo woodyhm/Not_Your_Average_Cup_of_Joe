@@ -15,7 +15,11 @@ rh.KEY_NAME = "Name";
 rh.KEY_LAST_TOUCHED = "lastUsed";
 rh.KEY_UID = "uid";
 rh.KEY_IS_BREWING = "isBrewing";
-rh.KEY_SCHEDULE_TIME = "scheduleBrewTime"
+rh.KEY_SCHEDULE_TIME = "scheduleBrewTime";
+rh.KEY_DELETE_TIME = "deleteBrewTime";
+rh.KEY_SCHEDULES = "schedules"
+
+rh.schedules = [];
 
 // rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -172,6 +176,7 @@ rh.FbSingleCoffeeMakerManager = class {
 		this._ref = firebase.firestore().collection(rh.COLLECTION_COFFEEMAKERS).doc(coffeeMakerId);
 		this._document = {};
 		this._unsubscribe = null;
+		
 	}
 
 	beginListening(changeListener) {
@@ -237,14 +242,23 @@ rh.FbSingleCoffeeMakerManager = class {
 		return this._document.get(rh.KEY_IS_BREWING);
 	}
 
+	get schedules(){
+		return this._document.get(rh.KEY_SCHEDULES);
+	}
 	
+	setSchedule(){
+		this._ref.update({[rh.KEY_SCHEDULES]:rh.schedules});
+	}
 }
 
 
 // TODO: implement single coffee maker pages
 rh.DetailPageController = class {
 	constructor() {
-		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));	
+		
+		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
+		
+
 		$("#editCoffeeMakerDialog").on("show.bs.modal", function (e) {
 			$("#inputCoffeeMaker").val(rh.fbSingleCoffeeMakerManager.name);
 		});
@@ -266,20 +280,27 @@ rh.DetailPageController = class {
 			window.location.href = 	`/MainPage.html`;
 		});
 
+		
 		$("#scheduleButton").click((event)=>{
 			let time = document.getElementById("timeInput").value;
 			let date = document.getElementById("dateInput").value;
 			console.log("schedule coffee by time and date");
-			console.log("schedule "+time);
-			console.log("schedule "+date);
+			// console.log("schedule "+time);
+			// console.log("schedule "+date);
 			// date.replace('-','');	
 			let schedule = date+"-"+time;
 			// schedule = schedule.replace('-','');
 			// schedule = schedule.replace(':','');
 			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
-			this.addToQueue();
+			rh.schedules.unshift(schedule);
+			rh.fbSingleCoffeeMakerManager.setSchedule();
+			// console.log("array of schedules "+rh.schedules.toString());
 		});
 
+		
+
+		
+		
 		
 	
 		$("#startBrewingButton").click((event)=>{
@@ -311,6 +332,9 @@ rh.DetailPageController = class {
 	}
 
 	updateView() {
+
+		rh.schedules = rh.fbSingleCoffeeMakerManager.schedules;
+		console.log(rh.schedules);
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
 
@@ -335,7 +359,7 @@ rh.DetailPageController = class {
 		// 	console.log(timeInput.value);
 		// });
 
-		let $newList = $("<ul></ul>").attr("id", "usersList").addClass("list-group");
+		// let $newList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
 
 		// for (let k = 0; k < rh.fbSingleCoffeeMakerManager.users.length; k++) {
 		// 	const $newUser = this.createUsers(
@@ -353,6 +377,25 @@ rh.DetailPageController = class {
 		// 	});
 	
 		// }
+
+		
+
+		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
+		for(let index=0;index<rh.schedules.length;index++){
+			const $newTime = this.addToQueue(rh.schedules[index],index);
+			$newQueueList.append($newTime);
+		}
+		$("#queueListContainer").append($newQueueList);
+
+		for(let k=0;k<rh.schedules.length;k++){
+			$(`#delete${k}`).click((event)=>{
+				console.log(`delete${k}`);
+				this.deleteFromQueue(k);
+				rh.fbSingleCoffeeMakerManager.setSchedule();
+			});
+
+
+		}
 		
 		// Show edit and delete if allowed.
 		if(rh.fbSingleCoffeeMakerManager.uid == rh.fbAuthManager.uid) {
@@ -362,24 +405,38 @@ rh.DetailPageController = class {
 
 	}
 
-	createUsers(user,index) {
-		const $newUser = $(`
-		  <li id="list${index}" class="list-group-item">
-			 <div>${user} <button id="delete${index}" class="btn btn-danger float-right">Delete User</button> </div>	 
-		  </li>`);
+	// createUsers(user,index) {
+	// 	const $newUser = $(`
+	// 	  <li id="list${index}" class="list-group-item">
+	// 		 <div>${user} <button id="delete${index}" class="btn btn-danger float-right">Delete User</button> </div>	 
+	// 	  </li>`);
 
 		  
 			  
-		return $newUser;
-	}
+	// 	return $newUser;
+	// }
 
 	addToQueue(time,index){
 		const newTime = $(`
-			<li id="time${time}" class="list-group-item">
-				<div> ${time} <button id="delete${index}" class="btn btn-danger float-right">Remove From Queue</button></div>
+			<li id="time${index}" class="list-group-item">
+				<div> ${time} <button id="delete${index}" class="btn myDeleteButton btn-danger float-right">Remove From Queue</button></div>
 			</li>
 		`);
+		// console.log(newTime);
 		return newTime;
+	}
+
+	deleteFromQueue(index){
+		console.log("before " + rh.schedules);
+		if(index==rh.schedules.length){
+			rh.schedules.pop();
+		}
+		for(let k=0;k<rh.schedules;k++){
+			if(k===index){
+				rh.schedules.splice(k,1);
+			}
+		}
+		console.log("after " + rh.schedules);
 	}
 
 	

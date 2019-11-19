@@ -48,7 +48,7 @@ body{
     } */
 }
 
-#users{
+#queue{
     height: 300px;
     overflow-y: scroll;
 }
