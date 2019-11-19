@@ -21,6 +21,7 @@ rh.KEY_SCHEDULES = "schedules"
 
 rh.schedules = [];
 rh.firstRun = false;
+rh.myBoolean = false;
 
 // rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -270,7 +271,7 @@ rh.FbSingleCoffeeMakerManager = class {
 rh.DetailPageController = class {
 	constructor() {
 		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
-
+	
 		$("#editCoffeeMakerDialog").on("show.bs.modal", function (e) {
 			$("#inputCoffeeMaker").val(rh.fbSingleCoffeeMakerManager.name);
 		});
@@ -306,9 +307,7 @@ rh.DetailPageController = class {
 			// schedule = schedule.replace(':','');
 			rh.schedules.push(schedule);
 			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
-			rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
-			// this.updateView();
-			this.deleteAfterTimePassed();
+			rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);			
 		});
 		
 	
@@ -339,13 +338,15 @@ rh.DetailPageController = class {
 			})
 		});
 
+
+		
+
 		
 	}
 
 	updateView() {
-
 		rh.schedules = rh.fbSingleCoffeeMakerManager.schedules;
-		console.log(rh.schedules);
+		// console.log(rh.schedules);
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
 
@@ -364,7 +365,12 @@ rh.DetailPageController = class {
 			$("#status").html("Status: Available")
 		}
 
+		if(rh.myBoolean){
+			setInterval(()=>{this.deleteAfterTimePassed();},10000);
+			rh.myBoolean=false;
+		}
 		
+
 		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
 
 		
@@ -395,7 +401,6 @@ rh.DetailPageController = class {
 			$(`#delete${k}`).click((event)=>{
 				console.log(`delete${k}`);
 				this.deleteFromQueue(k);
-				rh.fbSingleCoffeeMakerManager.setSchedule();
 				this.updateView();
 			});
 
@@ -409,11 +414,9 @@ rh.DetailPageController = class {
 			$("#menuDelete").show();
 		}
 
-		// this.deleteAfterTimePassed()
-
 	}
 	
-
+	//id="delete${index}"
 	addToQueue(time,index){
 		const newTime = $(`
 			<li id="time${index}" class="list-group-item">
@@ -460,7 +463,7 @@ rh.DetailPageController = class {
 		let temp = year+month+day+hour+minute;
 		
 		for(let k=0;k<rh.schedules.length;k++){
-			console.log("schedules ", rh.schedules[k]);
+			// console.log("schedules ", rh.schedules[k]);
 			let sch = rh.schedules[k];
 			sch = sch.replace('-','');
 			sch = sch.replace('-','');	
@@ -473,12 +476,9 @@ rh.DetailPageController = class {
 			console.log(sch,tem);
 			if(sch<tem){
 				this.deleteFromQueue(k);
-				
 			}
-			
 		}
 		this.updateView();
-		
 	}
 
 	monthToNum(month){
@@ -624,7 +624,6 @@ rh.initializePage = function () {
 	if ($("#list-page").length) {
 		console.log("On the list page");
 		const urlUid = urlParams.get('uid');
-		console.log(urlUid);
 		rh.fbCoffeeMakersManager = new rh.FbCoffeeMakersManager(urlUid);
 		new rh.ListPageController();
 	} else if ($("#detail-page").length) {
@@ -633,7 +632,9 @@ rh.initializePage = function () {
 		const coffeeMakerId = urlParams.get('id');
 		if (coffeeMakerId) {
 			rh.firstRun=true;
+			rh.myBoolean=true;
 			rh.fbSingleCoffeeMakerManager = new rh.FbSingleCoffeeMakerManager(coffeeMakerId);
+			
 			new rh.DetailPageController();
 		} else {
 			console.log("Missing a coffee maker id");
