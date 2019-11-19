@@ -20,6 +20,7 @@ rh.KEY_DELETE_TIME = "deleteBrewTime";
 rh.KEY_SCHEDULES = "schedules"
 
 rh.schedules = [];
+rh.firstRun = false;
 
 // rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
 
@@ -218,6 +219,14 @@ rh.FbSingleCoffeeMakerManager = class {
 			});
 	}
 
+	deleteFromSchedule(deleteBrewTime){
+		this._ref.update(
+			{[rh.KEY_DELETE_TIME]: deleteBrewTime,
+			}).then((docRef)=>{
+				console.log("Upate Schdule: ",deleteBrewTime);
+			});
+	}
+
 	delete() {
 		return this._ref.delete();
 	}
@@ -249,6 +258,7 @@ rh.FbSingleCoffeeMakerManager = class {
 	setSchedule(){
 		this._ref.update({[rh.KEY_SCHEDULES]:rh.schedules});
 	}
+	
 }
 
 
@@ -292,8 +302,9 @@ rh.DetailPageController = class {
 			// schedule = schedule.replace('-','');
 			// schedule = schedule.replace(':','');
 			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
-			rh.schedules.unshift(schedule);
+			rh.schedules.push(schedule);
 			rh.fbSingleCoffeeMakerManager.setSchedule();
+			this.updateView();
 			// console.log("array of schedules "+rh.schedules.toString());
 		});
 
@@ -377,21 +388,34 @@ rh.DetailPageController = class {
 		// 	});
 	
 		// }
-
-		
-
 		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
-		for(let index=0;index<rh.schedules.length;index++){
-			const $newTime = this.addToQueue(rh.schedules[index],index);
-			$newQueueList.append($newTime);
+		
+		if(rh.firstRun==true){
+			$("#queueList").remove();
+			for(let index=0;index<rh.schedules.length;index++){
+				const $newTime = this.addToQueue(rh.schedules[index],index);
+				$newQueueList.append($newTime);
+			}
+			$("#queueListContainer").append($newQueueList);
+			rh.firstRun=false;
 		}
-		$("#queueListContainer").append($newQueueList);
+		else{
+			$("#queueList").remove();
+			
+			for(let index=0;index<rh.schedules.length;index++){
+				const $newTime = this.addToQueue(rh.schedules[index],index);
+				$newQueueList.append($newTime);
+			}
+			$("#queueListContainer").append($newQueueList);
+		}
+		
 
 		for(let k=0;k<rh.schedules.length;k++){
 			$(`#delete${k}`).click((event)=>{
 				console.log(`delete${k}`);
 				this.deleteFromQueue(k);
 				rh.fbSingleCoffeeMakerManager.setSchedule();
+				this.updateView();
 			});
 
 
@@ -428,11 +452,13 @@ rh.DetailPageController = class {
 
 	deleteFromQueue(index){
 		console.log("before " + rh.schedules);
-		if(index==rh.schedules.length){
-			rh.schedules.pop();
+		if(index==rh.schedules.length-1){
+			rh.fbSingleCoffeeMakerManager.deleteFromSchedule(rh.schedules.pop());
 		}
-		for(let k=0;k<rh.schedules;k++){
-			if(k===index){
+		for(let k=0;k<rh.schedules.length;k++){
+			
+			if(k==index){
+				rh.fbSingleCoffeeMakerManager.deleteFromSchedule(rh.schedules[k]);
 				rh.schedules.splice(k,1);
 			}
 		}
@@ -550,6 +576,7 @@ rh.initializePage = function () {
 		
 		const coffeeMakerId = urlParams.get('id');
 		if (coffeeMakerId) {
+			rh.firstRun=true;
 			rh.fbSingleCoffeeMakerManager = new rh.FbSingleCoffeeMakerManager(coffeeMakerId);
 			new rh.DetailPageController();
 		} else {
