@@ -2,9 +2,8 @@
  * @fileoverview
  * Provides interactions for all pages in the UI.
  *
- * @author  Hannah Woody
+ * @author  Hannah Woody and Hunter Thompson
  */
-
 
 /** namespace. */
 var rh = rh || {};
@@ -21,9 +20,7 @@ rh.KEY_SCHEDULES = "schedules"
 
 rh.schedules = [];
 rh.firstRun = false;
-rh.myBoolean = false;
-
-// rh.ROSEFIRE_REGISTRY_TOKEN = "056cedef-84f2-4442-ad87-3ec162004924";
+rh.isRunOnce = false;
 
 rh.fbCoffeeMakersManager = null;
 rh.fbSingleCoffeeMakerManager = null;
@@ -59,9 +56,6 @@ rh.FbCoffeeMakersManager = class {
 		this._unsubscribe = query.onSnapshot((querySnapshot) => {
 			this._documentSnapshots = querySnapshot.docs;
 			console.log("Update " + this._documentSnapshots.length + " coffee makers");
-			// querySnapshot.forEach( (doc) => {
-			// 	console.log(doc.data());
-			// });
 			if (changeListener) {
 				changeListener();
 			}
@@ -105,8 +99,6 @@ rh.FbCoffeeMakersManager = class {
 
 rh.ListPageController = class {
 	constructor() {
-
-
 		rh.fbCoffeeMakersManager.beginListening(this.updateView.bind(this));
 		$("#menuMyCoffeeMakers").click((event)=>{
 			console.log("show only my coffee makers, uid: ",rh.fbAuthManager.uid);
@@ -121,13 +113,16 @@ rh.ListPageController = class {
 		$("#emailModal").on("shown.bs.modal", function (e) {
 			$("#emailJoeButton").trigger("focus");
 		});
+
 		$("#menuSignOut").click((event) => {
 			console.log("Sign out.");
 			rh.fbAuthManager.signOut();
 		});
+
 		$("#addCoffeeMakerDialog").on("shown.bs.modal", function (e) {
 			$("#inputCoffeeMaker").trigger("focus");
 		});
+
 		$("#submitAddCoffeeMaker").click((event) => {
 			const name = $("#inputCoffeeMaker").val();
 			rh.fbCoffeeMakersManager.add(name);
@@ -138,7 +133,6 @@ rh.ListPageController = class {
 	updateView() {
 		$("#coffeeMakerList").removeAttr("id").hide();
 		let $newList = $("<ul></ul>").attr("id", "coffeeMakerList").addClass("list-group");
-
 		for (let k = 0; k < rh.fbCoffeeMakersManager.length; k++) {
 			const $newCard = this.createCoffeeMakerCard(
 				rh.fbCoffeeMakersManager.getCoffeeMakerAtIndex(k)
@@ -160,9 +154,6 @@ rh.ListPageController = class {
 		     <div class="coffee-maker-card-name">${coffeeMaker.name}<button class="btn ${buttonType} float-right">${status}</button></div>
 		     
 		  </li>`);
-		  
-			//   <div class="coffee-maker-card-ipAddress text-right blockquote-footer">${coffeeMaker.ipAddress}</div>
-
 		$newCard.click((event) => {
 			console.log("You have clicked", coffeeMaker.uid, rh.fbAuthManager.uid);
 			if(coffeeMaker.uid==rh.fbAuthManager.uid){
@@ -176,11 +167,9 @@ rh.ListPageController = class {
 
 rh.FbSingleCoffeeMakerManager = class {
 	constructor(coffeeMakerId) {
-		// console.log(coffeeMakerId);
 		this._ref = firebase.firestore().collection(rh.COLLECTION_COFFEEMAKERS).doc(coffeeMakerId);
 		this._document = {};
 		this._unsubscribe = null;
-		
 	}
 
 	beginListening(changeListener) {
@@ -195,7 +184,6 @@ rh.FbSingleCoffeeMakerManager = class {
 			} else {
 				// This document does not exist (or has been deleted)
 				//window.location.href = "/";
-
 			}
 		});
 	}
@@ -237,7 +225,6 @@ rh.FbSingleCoffeeMakerManager = class {
 		});
 	}
 
-
 	delete() {
 		return this._ref.delete();
 	}
@@ -261,13 +248,9 @@ rh.FbSingleCoffeeMakerManager = class {
 	get lastTouched(){
 		return this._document.get(rh.KEY_LAST_TOUCHED);
 	}
-	
-	
-	
 }
 
 
-// TODO: implement single coffee maker pages
 rh.DetailPageController = class {
 	constructor() {
 		rh.fbSingleCoffeeMakerManager.beginListening(this.updateView.bind(this));
@@ -293,7 +276,6 @@ rh.DetailPageController = class {
 			window.location.href = 	`/MainPage.html`;
 		});
 
-		
 		$("#scheduleButton").click((event)=>{
 			
 			let time = document.getElementById("timeInput").value;
@@ -305,12 +287,49 @@ rh.DetailPageController = class {
 			let schedule = date+"-"+time;
 			// schedule = schedule.replace('-','');
 			// schedule = schedule.replace(':','');
-			rh.schedules.push(schedule);
-			rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
-			rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);			
+			
+			let now = firebase.firestore.Timestamp.now().toDate().toString();
+			let thisYear = now.substring(11,15);
+			let thisMonth = now.substring(4,7);
+			thisMonth = this.monthToNum(thisMonth);
+			let thisDay = now.substring(8,10);
+			let thisHour = now.substring(16,18);
+			let thisMinute = now.substring(19,21);
+
+			let scheduledYear = date.substring(0,4)
+			let scheduledMonth = date.substring(5,7)
+			let scheduledDay = date.substring(8)
+			let scheduledHour = time.substring(0,2)
+			let scheduledMinute = time.substring(3)
+
+			if (scheduledYear > thisYear) {
+				rh.schedules.push(schedule);
+				rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+				rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			}
+			if (scheduledYear == thisYear && scheduledMonth > thisMonth) {
+				rh.schedules.push(schedule);
+				rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+				rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			}
+			if (scheduledYear == thisYear && scheduledMonth == thisMonth && scheduledDay > thisDay) {
+				rh.schedules.push(schedule);
+				rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+				rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			}
+			if (scheduledYear == thisYear && scheduledMonth == thisMonth && scheduledDay == thisDay && scheduledHour > thisHour) {
+				rh.schedules.push(schedule);
+				rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+				rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			}
+			if (scheduledYear == thisYear && scheduledMonth == thisMonth && scheduledDay == thisDay && scheduledHour == thisHour && scheduledMinute > thisMinute) {
+				rh.schedules.push(schedule);
+				rh.fbSingleCoffeeMakerManager.updateSchedule(schedule);
+				rh.fbSingleCoffeeMakerManager.setSchedule(rh.schedules);
+			}
+
 		});
 		
-	
 		$("#startBrewingButton").click((event)=>{
 			console.log("brew button clicked");
 			// document.getElementById("progress").style.width = "0%";
@@ -330,29 +349,21 @@ rh.DetailPageController = class {
 			console.log("configure coffee maker settings");
 		});
 
-
 		$("#submitDeleteCoffeeMaker").click((event)=>{
 			rh.fbSingleCoffeeMakerManager.delete().then((params)=>{
 				console.log("deleted coffee maker");
 				window.location.href = "/MainPage.html";
 			})
 		});
-
-
-		
-
-		
 	}
 
 	updateView() {
 		rh.schedules = rh.fbSingleCoffeeMakerManager.schedules;
-		// console.log(rh.schedules);
 		$("#cardQuote").html(rh.fbSingleCoffeeMakerManager.quote);
 		$("#cardMovie").html(rh.fbSingleCoffeeMakerManager.movie);
 
 		console.log(rh.fbSingleCoffeeMakerManager.name);
 		$("#coffeeName").html(rh.fbSingleCoffeeMakerManager.name);
-		// $("#coffeeIcon").attr("src","images/coffee_icon.svg");
 
 		if (rh.fbSingleCoffeeMakerManager.isBrewing) {
 			console.log("bleh: ", rh.KEY_IS_BREWING);
@@ -364,12 +375,10 @@ rh.DetailPageController = class {
 			$("#startBrewingButton").attr("class","btn btn-success");
 			$("#status").html("Status: Available")
 		}
-
-		if(rh.myBoolean){
-			setInterval(()=>{this.deleteAfterTimePassed();},10000);
-			rh.myBoolean=false;
+		if(rh.isRunOnce){
+			setInterval(()=>{this.deleteAfterTimePassed();},1000);
+			rh.isRunOnce=false;
 		}
-		
 
 		let $newQueueList = $("<ul></ul>").attr("id", "queueList").addClass("list-group");
 
@@ -463,18 +472,16 @@ rh.DetailPageController = class {
 		let temp = year+month+day+hour+minute;
 		
 		for(let k=0;k<rh.schedules.length;k++){
-			// console.log("schedules ", rh.schedules[k]);
 			let sch = rh.schedules[k];
 			sch = sch.replace('-','');
 			sch = sch.replace('-','');	
 			sch = sch.replace('-','');	
 			sch = sch.replace(':','');
 			sch *=1;
-			// console.log(rh.shedules);
 			
 			let tem = parseInt(temp,10);
 			console.log(sch,tem);
-			if(sch<tem){
+			if(sch<=tem){
 				this.deleteFromQueue(k);
 			}
 		}
@@ -520,9 +527,6 @@ rh.DetailPageController = class {
 		}
 		return month
 	}
-
-	
-
 }
 
 function inputChange(e){
@@ -632,7 +636,7 @@ rh.initializePage = function () {
 		const coffeeMakerId = urlParams.get('id');
 		if (coffeeMakerId) {
 			rh.firstRun=true;
-			rh.myBoolean=true;
+			rh.isRunOnce=true;
 			rh.fbSingleCoffeeMakerManager = new rh.FbSingleCoffeeMakerManager(coffeeMakerId);
 			
 			new rh.DetailPageController();
